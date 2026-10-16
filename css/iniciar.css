@@ -1,0 +1,260 @@
+/* ==========================================
+   ESTILOS DE AUTENTICACIÓN (INICIAR SESIÓN)
+   ========================================== */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #030712;
+    position: relative;
+}
+
+
+/* Contenedor principal que centra el formulario horizontal y verticalmente */
+.auth-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    width: 100%;
+}
+
+/* Tarjeta flotante semi-transparente */
+.auth-card {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 440px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-card h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #ffffff;
+    text-align: left;
+}
+
+.auth-subtitle {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+/* Botón de ingreso con Google */
+.btn-google {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-google:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Divisor con texto */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 24px 0;
+    color: #64748b;
+    font-size: 0.8rem;
+    font-family: 'Fira Code', monospace;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.divider span {
+    padding: 0 12px;
+}
+
+/* Inputs de formulario */
+.input-group {
+    margin-bottom: 16px;
+}
+
+.input-group input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input::placeholder {
+    color: #64748b;
+}
+
+.input-group input:focus {
+    border-color: #3b82f6;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Botón principal Entrar */
+.btn-submit {
+    width: 100%;
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+/* Pie de tarjeta */
+.auth-footer {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+.auth-link {
+    color: #ffffff;
+    font-weight: 500;
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+.auth-link:hover {
+    color: #3b82f6;
+}
+
+/* Enlace inferior fuera de la tarjeta */
+.back-link {
+    margin-top: 24px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #ffffff;
+}
+.logo-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.logo-link > .img {
+    display: block;
+    width: 70px;
+    height: auto;
+}
+
+.logo-text {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.logo-text img {
+    display: block;
+    width: 115px;
+    height: auto;
+}
+
+/* TEXTOS MÁS CLAROS */
+
+.auth-card h1 {
+    color: #ffffff;
+}
+
+.auth-subtitle {
+    color: #e2e8f0;
+}
+
+.divider {
+    color: #cbd5e1;
+}
+
+.input-group input::placeholder {
+    color: #cbd5e1;
+}
+
+.auth-footer {
+    color: #e2e8f0;
+}
+
+.auth-link {
+    color: #60a5fa;
+}
+
+.back-link {
+    color: #e2e8f0;
+}
+
+.demo-note {
+    color: #cbd5e1 !important;
+}
+
+.social-links {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.social-links a {
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #3b82f6;
+}
+
+.footer-links a {
+    color: #6b7280;
+    text-decoration: none;
+    margin-left: 20px;
+}

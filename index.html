@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATIS-J TECHNOLOGY - Aprende a programar y diseñar web de verdad</title>
+    <link rel="stylesheet" href="css/styles.css?v=20.0">
+    <!-- Fuente Inter desde Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+    <video class="video-fondo" autoplay muted loop playsinline>
+        <source src="videos/matrix-azul.mp4" type="video/mp4">
+    </video>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html" class="logo-link">
+                <img src="img/logo-atisj.png" alt="ATISJ" class="logo-img">
+            </a>
+        </div>
+        <nav class="nav-links">
+            <a href="#" class="active">Inicio</a>
+            <a href="cursos.html">Cursos</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="cursos2.html">Mis cursos</a>
+        </nav>
+        <div class="auth-buttons">
+            <a href="registrar.html" class="btn-primary-outline">Crear cuenta</a>
+        </div>
+    </header>
+    <!-- CARRUSEL BANNER GRANDE ESTILO ATISJ (3 TEMAS TECNOLÓGICOS) -->
+<section class="promo-carousel-wrapper">
+    <button class="promo-nav-btn prev" onclick="movePromoSlide(-1)">❮</button>
+    <button class="promo-nav-btn next" onclick="movePromoSlide(1)">❯</button>
+
+    <div class="promo-carousel-track" id="promoTrack">
+        
+        <!-- Slide 1: Tema Dark Tech / IA & Código (Estilo 1) -->
+        <div class="promo-slide theme-dark-tech">
+            <div class="promo-shape bg-shape-tech-1"></div>
+            <div class="promo-shape bg-shape-tech-2"></div>
+            
+            <div class="promo-content">
+                <div class="promo-text-side">
+                    <div class="promo-tag-box tag-tech">
+                        <span>⚡ Promo Especial</span>
+                    </div>
+                    <h2 class="promo-title">Aprende a programar con descuento exclusivo</h2>
+                    <p class="promo-sub">
+                        <span class="flag">🇵🇪</span> <strong>S/.5 PEN</strong> por curso individual · Acceso de por vida
+                    </p>
+                    <p class="promo-old-price">Antes <del>S/.50</del> · Paga en cuotas o pago único</p>
+                    
+                    <a href="registrar.html" class="promo-action-btn btn-neon-yellow">
+                        Quiero suscribirme hoy <span>⏱</span>
+                    </a>
+
+                    <div class="promo-timer-row">
+                        <span>Solo quedan:</span>
+                        <div class="time-box">1d</div>
+                        <div class="time-box">05h</div>
+                        <div class="time-box">42m</div>
+                        <div class="time-box">18s</div>
+                    </div>
+                </div>
+
+                <!-- Ilustración Tech / IDE + IA -->
+                <div class="promo-image-side">
+                    <div class="tech-window-mockup">
+                        <div class="window-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="window-title">script.js — ATISJ Code</span>
+                        </div>
+                        <div class="window-body">
+                            <code><span class="kwd">const</span> course = <span class="str">"Programación Web & IA"</span>;</code>
+                            <code><span class="kwd">function</span> <span class="func">startLearning</span>() {</code>
+                            <code>&nbsp;&nbsp;<span class="kwd">return</span> <span class="str">"🚀 Éxito asegurado"</span>;</code>
+                            <code>}</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Tema Magenta / Cyberpunk con Mockup Móvil (Estilo 2) -->
+        <div class="promo-slide theme-cyber-magenta">
+            <div class="promo-shape bg-shape-magenta-1"></div>
+            <div class="promo-shape bg-shape-magenta-2"></div>
+
+            <div class="promo-content">
+                <div class="promo-text-side">
+                    <div class="promo-tag-box tag-cyber">
+                        <span>🔥 ¿Por qué suscribirte?</span>
+                    </div>
+                    <h2 class="promo-title">Construye un portafolio real mientras aprendes</h2>
+                    <p class="promo-sub">
+                        Domina HTML, CSS, JavaScript y IA con casos prácticos valorados por empresas.
+                    </p>
+                    <a href="cursos.html" class="promo-action-btn btn-neon-yellow">
+                        Ver todos los cursos <span>🚀</span>
+                    </a>
+                </div>
+
+                <!-- Mockup Móvil Neón -->
+                <div class="promo-image-side">
+                    <div class="phone-mockup cyber-phone">
+                        <img src="img/html.png" alt="Cursos de Código ATISJ">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Tema Futurista Violeta & Azul con Mentoría (Estilo 3) -->
+        <div class="promo-slide theme-futuristic-blue">
+            <div class="promo-shape bg-shape-blue-1"></div>
+            <div class="promo-shape bg-shape-blue-2"></div>
+
+            <div class="promo-content">
+                <div class="promo-text-side">
+                    <div class="promo-tag-box tag-blue">
+                        <span>💡 Acompañamiento VIP</span>
+                    </div>
+                    <h2 class="promo-title">Resuelve tus dudas con instructores en vivo</h2>
+                    <p class="promo-sub">
+                        Aprende acompañado. Sin respuestas automáticas: mentores reales respondiendo todas tus preguntas.
+                    </p>
+                    <a href="registrar.html" class="promo-action-btn btn-neon-yellow">
+                        Hablar con un mentor <span>💬</span>
+                    </a>
+                </div>
+
+                <!-- Tarjeta Interactiva de Mentoría -->
+                <div class="promo-image-side">
+                    <div class="mentor-card-mockup">
+                        <div class="avatar-group">
+                            <div class="avatar">👨‍💻</div>
+                            <div class="avatar">👩‍💻</div>
+                        </div>
+                        <div class="mentor-info">
+                            <h4>Mentoría 1 a 1</h4>
+                            <p>Soporte activo en tiempo real</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge-online">
+                <span class="dot"></span>
+                <span>0 alumnos activos en línea</span>
+            </div>
+            <h1>Aprende a programar y diseñar web <span class="text-gradient">de verdad</span></h1>
+            <p class="hero-description">
+                Cursos de programación y diseño web con proyectos reales, retroalimentación de mentores y un plan premium con tutorías personalizadas.
+                Sin requisitos previos: solo curiosidad y un computador con internet.
+            </p>
+            <div class="hero-buttons">
+                <a href="cursos.html" class="btn-primary">Ver cursos</a>
+                <a href="#" class="btn-secondary">Hablar con un mentor</a>
+            </div>
+            <div class="hero-stats">
+                <span><strong>4,8/5</strong> · 1.2k reseñas</span>
+                <span>Certificado incluido</span>
+                <span>Acceso de por vida</span>
+            </div>
+        </div>
+        <div class="hero-widget">
+            <div class="widget-header">
+                <span>mis_cursos.mp4</span>
+                <span class="status-badge"><span class="dot-green"></span> en vivo</span>
+            </div>
+            <div class="widget-video-container">
+                <video controls class="hero-video" id="mainVideo">
+                    <source src="img/videothifa.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Características principales (AHORA CON FONDO BLANCO Y TEXTO OSCURO) -->
+    <section class="features">
+        <div class="feature-card">
+            <span class="feature-number">01</span>
+            <h3>Proyectos reales</h3>
+            <p>Construye portafolio con casos que los reclutadores valoran.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-number">02</span>
+            <h3>Mentoría humana</h3>
+            <p>Resuelve dudas con instructores, no con bots.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-number">03</span>
+            <h3>Acceso de por vida</h3>
+            <p>Tu pago da acceso permanente a todo el contenido.</p>
+        </div>
+    </section>
+
+    <!-- Sección Cursos -->
+    <section class="courses-section" id="cursos">
+        <div class="section-header">
+            <div>
+                <h2>Algunos de nuestros cursos</h2>
+                <p>Cada curso tiene su propio precio. El plan con tutorías incluye todo.</p>
+            </div>
+            <a href="cursos.html" class="catalog-link">ver catálogo →</a>
+        </div>
+
+        <div class="courses-grid">
+            <!-- Curso 1 -->
+            <div class="course-card" onclick="openCourseModal('html')" style="cursor: pointer;">
+                <div class="card-preview">
+                    <img src="img/html.png" alt="HTML y CSS Pro" class="course-img">
+                </div>
+                <div class="card-content">
+                    <span class="category">Programación</span>
+                    <h3>HTML y CSS de 0</h3>
+                    <p>Aprende a crear la estructura de una página web desde cero, usando estilos y personalidades.</p>
+                    <div class="course-meta">6 lecciones · 1h · Básico</div> 
+                    <div class="price-row">
+                        <span class="price">S/.5 <small>PEN</small></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Curso 2 -->
+            <div class="course-card" onclick="openCourseModal('js')" style="cursor: pointer;">
+                <div class="card-preview">
+                    <img src="img/diseño.png" alt="Diseño desde cero" class="course-img">
+                </div>
+                <div class="card-content">
+                    <span class="category">Diseño</span>
+                    <h3>Diseño Gráfico de 0</h3>
+                    <p>Aprende los fundamentos del diseño, combina colores, tipografías e imágenes y crea diseños atractivos desde cero.</p>
+                    <div class="course-meta">6 lecciones · 1 h · Básico</div>
+                    <div class="price-row">
+                        <span class="price">S/.5 <small>PEN</small></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Curso 3 -->
+            <div class="course-card" onclick="openCourseModal('figma')" style="cursor: pointer;">
+                <div class="card-preview">
+                    <img src="img/animacion.png" alt="Animacion" class="course-img">
+                </div>
+                <div class="card-content">
+                    <span class="category">Animación</span>
+                    <h3>Animación desde 0</h3>
+                    <p>Aprende los fundamentos de la animación y crea movimientos sencillos, personajes y pequeñas escenas de forma fácil y divertida.</p>
+                    <div class="course-meta">6 lecciones · 1 h · Básico</div>
+                    <div class="price-row">
+                        <span class="price">S/.5 <small>PEN</small></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Curso 4 -->
+            <div class="course-card" onclick="openCourseModal('react')" style="cursor: pointer;">
+                <div class="card-preview">
+                    <img src="img/redes.png" alt="redes" class="course-img">
+                </div>
+                <div class="card-content">
+                    <span class="category">Redes</span>
+                    <h3>Redes desde 0</h3>
+                    <p>Aprende los conceptos básicos de redes, cómo se conectan los dispositivos y cómo funciona Internet de manera sencilla y práctica.</p>
+                    <div class="course-meta">6 lecciones · 1 h · Básico</div>
+                    <div class="price-row">
+                        <span class="price">S/.5 <small>PEN</small></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- Banner CTA -->
+    <section class="cta-banner">
+        <div class="cta-content">
+            <h2>Empieza a construir hoy</h2>
+            <p>Regístrate, elige tu curso y paga de forma segura. Sin permanencia.</p>
+            <div class="cta-buttons">
+                <a href="registrar.html" class="btn-white">Crear cuenta gratis</a>
+                <a href="cursos.html" class="btn-secondary">Ver catálogo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer con Redes Sociales -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>© 2026 ATIS-J TECHNOLOGY · Cursos de programación y diseño web</p>
+
+            <div class="social-links">
+                <a href="#" target="_blank" aria-label="YouTube">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>YouTube</span>
+                </a>
+                <a href="#" target="_blank" aria-label="Instagram">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <span>Instagram</span>
+                </a>
+                <a href="#" target="_blank" aria-label="TikTok">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.28-2.58.54-5.22 2.27-7.1 1.25-1.37 2.98-2.25 4.84-2.48v4.22c-.93.11-1.84.52-2.52 1.19-.85.83-1.25 2.05-1.09 3.23.16 1.19.92 2.22 2.02 2.69 1.1.48 2.39.3 3.34-.43.76-.57 1.22-1.48 1.26-2.43.04-3.51.01-7.02.02-10.53z"/></svg>
+                    <span>TikTok</span>
+                </a>
+                <a href="#" target="_blank" aria-label="Facebook">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    <span>Facebook</span>
+                </a>
+            </div>
+
+            <div class="footer-links">
+                <a href="#cursos">Cursos</a>
+                <a href="cursos2.html">Mis cursos</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VENTANA MODAL DE CURSO -->
+    <div id="courseModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <div class="modal-icon" id="modalIcon">&lt;/&gt;</div>
+                    <div>
+                        <p class="modal-subtitle" id="modalCategory">Categoría</p>
+                        <h3 class="modal-title" id="modalTitle">Nombre del Curso</h3>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="close-btn">✕</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="temario-label" id="modalTemarioLabel">TEMARIO DEL CURSO</div>
+                <div class="lessons-list" id="modalLessonsContainer"></div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="price-tag"><span id="modalPrice">S/.0</span> <span class="price-currency">PEN</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts JS -->
+    <script>
+        const coursesData = {
+            'html': {
+                title: 'HTML y CSS',
+                category: 'Diseño Web',
+                price: 'S/.5',
+                icon: '&lt;/&gt;',
+                lessons: [
+                    'Introducción a HTML',
+                    'Textos, títulos y enlaces',
+                    'Imágenes y listas',
+                    'Introducción a CSS',
+                    'Diseño con CSS',
+                    'Creación de una página completa'
+                ]
+            },
+            'js': {
+                title: 'Diseño gráfico desde 0',
+                category: 'Programación',
+                price: 'S/.5',
+                icon: 'DG',
+                lessons: [
+                    'Introducción al diseño gráfico',
+                    'Color y teoría del color',
+                    'Tipografía',
+                    'Composición y distribución',
+                    'Creación de un diseño',
+                    'Proyecto final'
+                ]
+            },
+            'figma': {
+                title: 'Animación desde 0',
+                category: 'Animación',
+                price: 'S/.5',
+                icon: 'A',
+                lessons: [
+                    'Introducción a la animación y sus conceptos básicos',
+                    'Tiempo, velocidad y movimiento',
+                    'Creación y movimiento de personajes',
+                    'Animación de objetos y elementos',
+                    'Creación de una pequeña escena animada',
+                    'Proyecto final: crear una animación completa'
+                ]
+            },
+            'react': {
+                title: 'Redes desde 0',
+                category: 'Redes',
+                price: 'S/.5',
+                icon: 'TS',
+                lessons: [
+                    'Introducción a las redes y conceptos básicos',
+                    'Tipos de redes: LAN, WAN e Internet',
+                    'Dispositivos de red: router, switch y módem',
+                    'Direcciones IP y conexión entre dispositivos',
+                    'Seguridad básica en redes',
+                    'Proyecto final: crear y configurar una red básica'
+                ]
+            }
+        };
+
+        function openCourseModal(courseKey) {
+            const course = coursesData[courseKey];
+            if (!course) return;
+
+            document.getElementById('modalTitle').innerText = course.title;
+            document.getElementById('modalCategory').innerText = course.category;
+            document.getElementById('modalPrice').innerText = course.price;
+            document.getElementById('modalIcon').innerHTML = course.icon;
+            document.getElementById('modalTemarioLabel').innerText = `TEMARIO DEL CURSO (${course.lessons.length} LECCIONES)`;
+
+            const container = document.getElementById('modalLessonsContainer');
+            container.innerHTML = '';
+
+            course.lessons.forEach((lesson, index) => {
+                const num = (index + 1).toString().padStart(2, '0');
+                const item = document.createElement('div');
+                item.className = 'lesson-item';
+                item.innerHTML = `
+                    <span class="lesson-number">${num}</span>
+                    <span class="lesson-text">${lesson}</span>
+                `;
+                container.appendChild(item);
+            });
+
+            document.getElementById('courseModal').classList.add('active');
+        }
+
+        function closeModal() {
+            var modal = document.getElementById('courseModal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        window.addEventListener('click', function(e) {
+            var modal = document.getElementById('courseModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // LÓGICA DEL CARRUSEL BANNER
+        let currentPromoIndex = 0;
+        function movePromoSlide(direction) {
+            const track = document.getElementById('promoTrack');
+            const slides = document.querySelectorAll('.promo-slide');
+            currentPromoIndex = (currentPromoIndex + direction + slides.length) % slides.length;
+            track.style.transform = `translateX(-${currentPromoIndex * 100}%)`;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="java/supabase-client.js"></script>
+    <script src="java/navbar.js"></script>
+</body>
+</html>

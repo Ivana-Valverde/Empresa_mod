@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi perfil - ATIS-J TECHNOLOGY</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/user.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Header / Navbar -->
+<header class="navbar">
+    <div class="logo">
+        <a href="index.html" class="logo-link">
+            <img src="img/logo-atisj.png" alt="ATISJ" class="logo-img">
+        </a>
+    </div>
+    <nav class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="cursos.html">Cursos</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="cursos2.html">Mis cursos</a>           
+    </nav>
+    <div class="auth-buttons">
+        <a href="user.html" class="user-chip active" id="nav-user-chip">
+            <span class="user-avatar-mini" id="nav-user-avatar">--</span>
+            <span id="nav-user-name">Cargando...</span>
+        </a>
+    </div>
+</header>
+
+<!-- Encabezado de perfil -->
+<section class="profile-hero">
+    <div class="profile-hero-main">
+        <div class="profile-avatar" id="user-avatar">--</div>
+        <div class="profile-info">
+            <h1 id="user-fullname">Cargando...</h1>
+            <p class="profile-email" id="user-email">...</p>
+            <p class="profile-since" id="user-since">Miembro de ATIS-J</p>
+        </div>
+        <button class="btn-primary-outline" onclick="editProfile()">Editar perfil</button>
+    </div>
+    <div class="profile-stats">
+        <div class="stat-box">
+            <span class="stat-number" id="stat-courses">0</span>
+            <span class="stat-label">Cursos inscritos</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-number" id="stat-progress">0%</span>
+            <span class="stat-label">Progreso promedio</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-number" id="stat-certs">0</span>
+            <span class="stat-label">Certificados</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-number" id="stat-payments">0/0</span>
+            <span class="stat-label">Pagos al día</span>
+        </div>
+    </div>
+</section>
+
+    <!-- Recomendación de tutorías -->
+    <section class="tutoring-suggestion">
+        <div class="tutoring-suggestion-text">
+            <span class="tutoring-suggestion-tag">Recomendado para ti</span>
+            <h3>Con tu ritmo actual, una tutoría podría acelerar tu avance</h3>
+            <p>Llevas varios cursos a la vez. El plan con tutorías te da una ruta guiada y sesiones semanales 1 a 1 con un mentor.</p>
+        </div>
+        <a href="cursos.html#tutoring" class="btn-tutoring">Ver plan con tutorías</a>
+    </section>
+
+    <!-- Mis cursos inscritos -->
+    <section class="my-courses-section">
+        <div class="section-header">
+            <div>
+                <h2>Mis cursos</h2>
+                <p>Continúa donde lo dejaste o revisa tu ruta de estudio.</p>
+            </div>
+        </div>
+        <div class="enrolled-grid" id="enrolled-courses-grid">
+            <!-- Se genera dinámicamente con java/user.js -->
+        </div>
+    </section>
+
+    <!-- Estado de pagos -->
+    <section class="payments-section">
+        <div class="section-header">
+            <div>
+                <h2>Estado de mis pagos</h2>
+                <p>Revisa qué cursos ya pagaste y cuáles tienen un pago pendiente.</p>
+            </div>
+        </div>
+        <div class="payments-table" id="payments-table">
+            <!-- Se genera dinámicamente con java/user.js -->
+        </div>
+    </section>
+
+    <!-- Ruta de estudio repotenciada (LMS Interface) -->
+    <section class="study-path-section" id="study-path">
+        <div class="section-header study-header-flex">
+            <div>
+                <span class="tech-badge">Plataforma de Aprendizaje</span>
+                <h2 id="study-course-title">Selecciona un curso</h2>
+                <p id="study-path-subtitle">Elige un curso arriba para desplegar su sílabo completo.</p>
+            </div>
+            <button id="btn-certificate" class="btn-certificate disabled" disabled onclick="downloadCertificate()">
+                <span>🏆</span> Descargar Certificado
+            </button>
+        </div>
+
+        <div class="study-path-layout" id="study-path-layout">
+            <!-- Sidebar lateral con lista de módulos -->
+            <aside class="study-sidebar">
+                <div class="study-progress">
+                    <div class="progress-info">
+                        <span class="progress-text">Progreso del curso</span>
+                        <span class="progress-percentage" id="study-progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="study-progress-fill" style="width: 0%;"></div>
+                    </div>
+                    <small class="progress-subtext" id="lessons-count-text">0 de 0 lecciones completadas</small>
+                </div>
+
+                <ol class="module-list" id="module-list">
+                    <!-- Se genera dinámicamente con java/user.js -->
+                </ol>
+            </aside>
+
+            <!-- Área de Contenido Principal -->
+            <div class="study-content">
+                <div class="video-wrapper">
+                    <div id="video-container">
+                        <!-- Se inyecta dinámicamente desde java/user.js -->
+                    </div>
+                </div>
+
+                <!-- Barra de Navegación y Control de Lecciones -->
+                <div class="lesson-nav-bar">
+                    <button id="btn-prev-lesson" class="btn-nav" onclick="prevModule()">
+                        ← Lección anterior
+                    </button>
+
+                    <label class="complete-check">
+                        <input type="checkbox" id="module-complete">
+                        <span>Marcar como completada</span>
+                    </label>
+
+                    <button id="btn-next-lesson" class="btn-nav" onclick="nextModule()">
+                        Siguiente lección →
+                    </button>
+                </div>
+
+                <!-- Pestañas de Información de la Lección -->
+                <div class="module-details-tabs">
+                    <div class="tab-headers">
+                        <button class="tab-btn active" onclick="switchTab('tab-desc')">Descripción</button>
+                        <button class="tab-btn" onclick="switchTab('tab-resources')">Recursos y Archivos</button>
+                        <button class="tab-btn" onclick="switchTab('tab-notes')">Mis Apuntes</button>
+                    </div>
+
+                    <!-- Contenido Pestaña 1: Descripción -->
+                    <div class="tab-content active" id="tab-desc">
+                        <h3 id="module-title">—</h3>
+                        <p id="module-description">Selecciona un curso para comenzar tu ruta de estudio.</p>
+                    </div>
+
+                    <!-- Contenido Pestaña 2: Recursos -->
+                    <div class="tab-content" id="tab-resources">
+                        <p class="tab-subtitle">Material descargable y guías de la lección:</p>
+                        <ul class="resources-list" id="resources-list">
+                            <!-- Se genera dinámicamente con java/user.js -->
+                        </ul>
+                    </div>
+
+                    <!-- Contenido Pestaña 3: Mis Notas -->
+                    <div class="tab-content" id="tab-notes">
+                        <p class="tab-subtitle">Escribe tus apuntes personales sobre esta lección (se guardan automáticamente):</p>
+                        <textarea id="lesson-notes-input" placeholder="Ej: Pasos para recortar cabello con la herramienta pluma en Photoshop..." rows="5"></textarea>
+                        <div class="notes-footer">
+                            <span id="notes-status-msg" class="notes-status"></span>
+                            <button class="btn-save-notes" onclick="saveLessonNotes()">Guardar notas</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comunidad de Discord -->
+    <section class="discord-section">
+        <div class="discord-content">
+            <span class="discord-tag">Comunidad</span>
+            <h2>¿Dudas con algún ejercicio? Pregunta en nuestro Discord</h2>
+            <p>Alumnos y mentores resuelven dudas de código y diseño todos los días.</p>
+            <a href="#" class="btn-discord">Unirme al Discord</a>
+        </div>
+    </section><br>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>© 2026 ATIS-J TECHNOLOGY · Cursos de programación y diseño web</p>
+            <div class="footer-links">
+                <a href="cursos.html">Cursos</a>
+                <a href="cursos2.html">Mis cursos</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="java/supabase-client.js"></script>
+    <script src="java/navbar.js"></script>
+    <script src="java/auth-guard.js"></script>
+    <script src="java/user.js"></script>
+</body>
+</html>

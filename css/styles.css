@@ -1,0 +1,920 @@
+/* ==========================================
+   RESET Y ESTILOS GENERALES
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #030712;
+    color: #f9fafb;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* VIDEO MATRIX FONDO */
+.video-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 7, 18, 0.50);
+    z-index: 1;
+    pointer-events: none;
+}
+
+body > :not(.video-fondo) {
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================
+   NAVEGACIÓN Y LOGO
+   ========================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: rgba(3, 7, 18, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-img {
+    width: 200px;
+    height: auto;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #ffffff;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.btn-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.btn-primary-outline {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.btn-primary-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================
+   HERO SECTION
+   ========================================== */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 80px 5%;
+    align-items: center;
+}
+
+.badge-online {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e;
+    border-radius: 50%;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+    color: #9ca3af;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 20px;
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+
+.hero-widget {
+    background: #0d1117;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.widget-header {
+    background: #161b22;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #8b949e;
+    font-family: 'Fira Code', monospace;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #22c55e;
+    font-size: 0.8rem;
+}
+
+.dot-green {
+    width: 6px;
+    height: 6px;
+    background-color: #22c55e;
+    border-radius: 50%;
+}
+
+.widget-video-container {
+    width: 100%;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-video {
+    width: 100%;
+    max-height: 380px;
+    display: block;
+    object-fit: contain;
+}
+
+/* ==========================================
+   CARACTERÍSTICAS PRINCIPALES (TARJETAS CON FONDO BLANCO)
+   ========================================== */
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 40px 5%;
+}
+
+.feature-card {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+}
+
+.feature-number {
+    color: #2563eb !important;
+    font-weight: 800;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.feature-card h3 {
+    margin: 6px 0 10px 0;
+    font-size: 1.3rem;
+    color: #0f172a !important; /* TEXTO OSCURO */
+    font-weight: 800;
+}
+
+.feature-card p {
+    color: #334155 !important; /* TEXTO OSCURO */
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   TARJETAS DE CURSOS EN FONDO BLANCO
+   ========================================== */
+.courses-section {
+    padding: 60px 5%;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+}
+
+.section-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+}
+
+.section-header p {
+    color: #9ca3af;
+}
+
+.catalog-link {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    width: 100%;
+}
+
+.course-card {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+.card-preview {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    background-color: #f1f5f9;
+}
+
+.course-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: #ffffff !important;
+}
+
+.category {
+    font-size: 0.8rem;
+    color: #2563eb !important;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.card-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a !important;
+    margin-bottom: 8px;
+}
+
+.card-content p {
+    font-size: 0.88rem;
+    color: #334155 !important;
+    margin-bottom: 14px;
+}
+
+.course-meta {
+    font-size: 0.8rem;
+    color: #64748b !important;
+    margin-bottom: 16px;
+}
+
+.price-row {
+    margin-top: auto;
+}
+
+.price {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #0f172a !important;
+}
+
+.price small {
+    font-size: 0.75rem;
+    color: #64748b !important;
+}
+
+/* ==========================================
+   CARRUSEL BANNER GRANDE ATISJ (VERSION COMPACTA & TECH)
+   ========================================== */
+.promo-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 20px 0 30px 0;
+}
+
+.promo-carousel-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.promo-slide {
+    min-width: 100%;
+    width: 100%;
+    padding: 26px 6%;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* ==========================================
+   ESTILOS DE CADA TEMA
+   ========================================== */
+
+/* Tema 1: Dark Tech / Código & IA */
+.promo-slide.theme-dark-tech {
+    background: linear-gradient(135deg, #0f0c20 0%, #1a103c 50%, #0d091a 100%);
+    border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+}
+
+/* Tema 2: Cyber Magenta */
+.promo-slide.theme-cyber-magenta {
+    background: linear-gradient(135deg, #880e4f 0%, #ad1457 40%, #520733 100%);
+    border-bottom: 2px solid rgba(255, 64, 129, 0.3);
+}
+
+/* Tema 3: Futurista Azul/Violeta */
+.promo-slide.theme-futuristic-blue {
+    background: linear-gradient(135deg, #0d47a1 0%, #1e3a8a 50%, #0284c7 100%);
+    border-bottom: 2px solid rgba(14, 165, 233, 0.3);
+}
+
+/* ==========================================
+   FORMAS ORGÁNICAS Y BRILLOS NEÓN DE FONDO
+   ========================================== */
+.promo-shape {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: 0.35;
+}
+
+.bg-shape-tech-1 { width: 220px; height: 220px; background: #8b5cf6; top: -60px; left: -50px; }
+.bg-shape-tech-2 { width: 200px; height: 200px; background: #ec4899; bottom: -50px; right: 25%; }
+
+.bg-shape-magenta-1 { width: 220px; height: 220px; background: #ff4081; top: -50px; left: -50px; }
+.bg-shape-magenta-2 { width: 200px; height: 200px; background: #ffd600; bottom: -50px; right: 20%; }
+
+.bg-shape-blue-1 { width: 240px; height: 240px; background: #38bdf8; top: -60px; left: -60px; }
+.bg-shape-blue-2 { width: 200px; height: 200px; background: #818cf8; bottom: -50px; right: 15%; }
+
+/* ==========================================
+   ESTRUCTURA Y TEXTOS
+   ========================================== */
+.promo-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 24px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.promo-text-side {
+    color: #ffffff;
+}
+
+.promo-tag-box {
+    display: inline-block;
+    font-weight: 800;
+    font-size: 0.78rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tag-tech { background: #8b5cf6; color: #ffffff; }
+.tag-cyber { background: #ffffff; color: #000000; }
+.tag-blue { background: #38bdf8; color: #0f172a; }
+
+.promo-title {
+    font-size: 1.75rem;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.promo-sub {
+    font-size: 0.98rem;
+    margin-bottom: 6px;
+    color: #f1f5f9;
+}
+
+.promo-old-price {
+    font-size: 0.82rem;
+    color: #cbd5e1;
+    margin-bottom: 14px;
+}
+
+.promo-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffd600;
+    color: #000000;
+    font-weight: 800;
+    font-size: 0.92rem;
+    padding: 10px 22px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, background 0.2s ease;
+    margin-bottom: 12px;
+}
+
+.promo-action-btn:hover {
+    transform: scale(1.03);
+    background: #ffea00;
+}
+
+.promo-timer-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.time-box {
+    background: rgba(255, 255, 255, 0.95);
+    color: #000000;
+    font-weight: 800;
+    padding: 3px 7px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+}
+
+/* ==========================================
+   MOCKUPS Y ELEMENTOS GRÁFICOS (DERECHA)
+   ========================================== */
+.promo-image-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Slide 1: Ventana de Código / IDE */
+.tech-window-mockup {
+    width: 260px;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    font-family: monospace;
+}
+
+.window-header {
+    background: #1e293b;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.dot.red { background: #ef4444; }
+.dot.yellow { background: #f59e0b; }
+.dot.green { background: #10b981; }
+
+.window-title {
+    color: #94a3b8;
+    font-size: 0.7rem;
+    margin-left: 6px;
+}
+
+.window-body {
+    padding: 12px;
+    color: #e2e8f0;
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+.window-body .kwd { color: #f43f5e; }
+.window-body .str { color: #10b981; }
+.window-body .func { color: #38bdf8; }
+
+/* Slide 2: Celular Cyberpunk */
+.phone-mockup {
+    width: 175px;
+    height: 250px;
+    background: #000000;
+    border: 6px solid #1e293b;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+    transform: rotate(3deg);
+    transition: transform 0.3s ease;
+}
+
+.phone-mockup:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.phone-mockup img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Slide 3: Tarjeta de Mentoría */
+.mentor-card-mockup {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 16px 20px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.avatar-group { display: flex; gap: -8px; }
+.avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #0284c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    border: 2px solid #ffffff;
+}
+
+.mentor-info h4 { margin: 0; color: #ffffff; font-size: 0.95rem; }
+.mentor-info p { margin: 2px 0 0 0; color: #e0f2fe; font-size: 0.78rem; }
+
+/* ==========================================
+   BOTONES NAVEGACIÓN
+   ========================================== */
+.promo-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.promo-nav-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.promo-nav-btn.prev { left: 16px; }
+.promo-nav-btn.next { right: 16px; }
+
+/* ==========================================
+   CTA & FOOTER
+   ========================================== */
+.cta-banner {
+    background: linear-gradient(180deg, rgba(37, 99, 235, 0.1) 0%, rgba(3, 7, 18, 0) 100%);
+    padding: 80px 5%;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cta-content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.cta-content p {
+    color: #9ca3af;
+    margin-bottom: 24px;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.btn-white {
+    background: #ffffff;
+    color: #030712;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer {
+    padding: 30px 5%;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.social-links {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.social-links a {
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #3b82f6;
+}
+
+.footer-links a {
+    color: #6b7280;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+/* ==========================================
+   VENTANA EMERGENTE (MODAL CENTRADO)
+   ========================================== */
+.modal-overlay {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: rgba(0, 0, 0, 0.80) !important;
+    backdrop-filter: blur(6px);
+    z-index: 99999 !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.modal-overlay.active {
+    display: flex !important;
+}
+
+.modal-box {
+    background-color: #111625;
+    border: 1px solid #2d3748;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    color: #ffffff;
+}
+
+.modal-header {
+    padding: 16px 20px;
+    background-color: #171e31;
+    border-bottom: 1px solid #2d3748;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.modal-icon {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.modal-subtitle {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #60a5fa;
+    font-weight: 600;
+    margin: 0;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 2px 0 0 0;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.close-btn:hover {
+    background-color: #2d3748;
+    color: #ffffff;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.temario-label {
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.lessons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background-color: #0b0e17;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+}
+
+.lesson-number {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: rgba(37, 99, 235, 0.2);
+    color: #60a5fa;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lesson-text {
+    font-size: 14px;
+    color: #e2e8f0;
+}
+
+.modal-footer {
+    padding: 16px 20px;
+    background-color: #171e31;
+    border-top: 1px solid #2d3748;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price-tag {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.price-currency {
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: normal;
+}
