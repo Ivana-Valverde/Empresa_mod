@@ -6,6 +6,12 @@
   }
   window.currentUser = session.user;
 
+    const { data: esAdmin } = await db.rpc("is_admin");
+  if (esAdmin) {
+    window.location.replace("admin.html");
+    return;
+  }
+  
   const { data: perfil } = await db
     .from("profiles")
     .select("nombre, created_at")

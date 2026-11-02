@@ -48,74 +48,11 @@
 
     <!-- Grid de Cursos -->
     <section class="catalog-grid-section">
-        <div class="courses-grid">
-            <!-- Curso 1 -->
-            <div class="course-card">
-                <div class="card-preview">
-                    <img src="img/html.png" alt="HTML y CSS Pro" class="course-img">
-                </div>
-                <div class="card-content">
-                    <span class="category">Programación</span>
-                    <h3>HTML y CSS de 0</h3>
-                    <p>Aprende a crear la estructura de una página web desde cero , usando estilos y personalidades</p>
-                    <div class="course-meta">6 lecciones · 1 h · Básico</div>
-                    <div class="price-row">
-                        <span class="price">S/.5 <small>PEN</small></span>
-                    </div>
-                    <a href="pagos.html?slug=html&curso=HTML%20y%20CSS%20de%200&categoria=Programaci%C3%B3n&desc=Estructura%20de%20una%20p%C3%A1gina%20web%20desde%20cero.&precio=5&img=img%2Fhtml.png" class="btn-login-main">Inscribirse</a>
-                </div>
+        
+            <div class="courses-grid" id="courses-grid">
+            <p style="color:#94a3b8">Cargando cursos...</p>
             </div>
-
-            <!-- Curso 2 -->
-            <div class="course-card">
-                <div class="card-preview">
-                    <img src="img/diseño.png" alt="diseño" class="course-img">
-                </div>
-                <div class="card-content">
-                    <span class="category">Diseño</span>
-                    <h3>Diseño Gráfico de 0</h3>
-                    <p>Aprende los fundamentos del diseño, combina colores, tipografías e imágenes y crea diseños atractivos desde cero.</p>
-                    <div class="course-meta">6 lecciones · 1 h · Básico</div>
-                    <div class="price-row">
-                        <span class="price">S/.5 <small>PEN</small></span>
-                    </div>
-                <a href="pagos.html?slug=diseno&curso=Dise%C3%B1o%20Gr%C3%A1fico%20de%200&categoria=Dise%C3%B1o&desc=Fundamentos%20del%20dise%C3%B1o%20gr%C3%A1fico.&precio=5&img=img%2Fdise%C3%B1o.png" class="btn-login-main">Inscribirse</a>
-                </div>
-            </div>
-
-            <!-- Curso 3 -->
-            <div class="course-card">
-                <div class="card-preview">
-                    <img src="img/animacion.png" alt="animacion" class="course-img">
-                </div>
-                <div class="card-content">
-                    <span class="category">Animación</span>
-                    <h3>Animación desde 0</h3>
-                    <p>Aprende los fundamentos de la animación y crea movimientos sencillos, personajes y pequeñas escenas de forma fácil y divertida.</p>
-                    <div class="course-meta">6 lecciones · 1 h · Básico</div>
-                    <div class="price-row">
-                        <span class="price">S/.5 <small>PEN</small></span>
-                    </div>
-                    <a href="pagos.html?slug=animacion&curso=Animaci%C3%B3n%20desde%200&categoria=Animaci%C3%B3n&desc=Fundamentos%20de%20la%20animaci%C3%B3n.&precio=5&img=img%2Fanimacion.png" class="btn-login-main">Inscribirse</a>
-                </div>
-            </div>
-
-            <!-- Curso 4 -->
-            <div class="course-card">
-                <div class="card-preview">
-                    <img src="img/redes.png" alt="redes" class="course-img">
-                </div>
-                <div class="card-content">
-                    <span class="category">Redes</span>
-                    <h3>Redes desde 0</h3>
-                    <p>Aprende los conceptos básicos de redes, cómo se conectan los dispositivos y cómo funciona Internet de manera sencilla y práctica.</p>
-                    <div class="course-meta">6 lecciones · 1 h · Básico</div>
-                    <div class="price-row">
-                        <span class="price">S/.5 <small>PEN</small></span>
-                    </div>
-                <a href="pagos.html?slug=redes&curso=Redes%20desde%200&categoria=Redes&desc=Conceptos%20b%C3%A1sicos%20de%20redes.&precio=5&img=img%2Fredes.png" class="btn-login-main">Inscribirse</a>                </div>
-            </div>
-        </div>
+        
     </section>
 
     <!-- Plan con tutorías -->
@@ -245,6 +182,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="java/supabase-client.js"></script>
     <script src="java/navbar.js"></script>
+    <script src="java/catalogo.js"></script>
     <script src="java/cursos.js"></script>
 </body>
 </html>

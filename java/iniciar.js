@@ -1,8 +1,14 @@
 const form = document.getElementById("login-form");
 
-// Si ya tiene sesión, lo mandamos directo a su perfil
+// Decide a dónde mandar al usuario: admin → panel, alumno → perfil
+async function irAlInicio() {
+  const { data: esAdmin } = await db.rpc("is_admin");
+  window.location.href = esAdmin ? "admin.html" : "user.html";
+}
+
+// Si ya tiene sesión, lo mandamos directo a su página
 db.auth.getSession().then(({ data }) => {
-  if (data.session) window.location.href = "user.html";
+  if (data.session) irAlInicio();
 });
 
 form.addEventListener("submit", async (e) => {
@@ -22,10 +28,10 @@ form.addEventListener("submit", async (e) => {
 
   const { error } = await db.auth.signInWithPassword({ email, password });
 
-  btn.disabled = false;
-  btn.textContent = "Entrar";
-
   if (error) {
+    btn.disabled = false;
+    btn.textContent = "Entrar";
+
     if (error.message.includes("Invalid login credentials")) {
       alert("Correo o contraseña incorrectos.");
     } else if (error.message.includes("Email not confirmed")) {
@@ -36,5 +42,5 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  window.location.href = "user.html";
+  await irAlInicio();
 });

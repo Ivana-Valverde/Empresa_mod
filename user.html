@@ -6,6 +6,7 @@
     <title>Mi perfil - ATIS-J TECHNOLOGY</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/user.css">
+    <link rel="stylesheet" href="css/notas.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -162,6 +163,7 @@
                         <button class="tab-btn active" onclick="switchTab('tab-desc')">Descripción</button>
                         <button class="tab-btn" onclick="switchTab('tab-resources')">Recursos y Archivos</button>
                         <button class="tab-btn" onclick="switchTab('tab-notes')">Mis Apuntes</button>
+                        <button class="tab-btn" id="btn-tab-cards" type="button">🗂️ Tarjetas</button>
                     </div>
 
                     <!-- Contenido Pestaña 1: Descripción -->
@@ -187,6 +189,24 @@
                             <button class="btn-save-notes" onclick="saveLessonNotes()">Guardar notas</button>
                         </div>
                     </div>
+                    <!-- Contenido Pestaña 4: Tarjetas de memoria -->
+<div class="tab-content" id="tab-cards">
+    <div class="cards-toolbar">
+        <div class="cards-scope">
+            <button type="button" class="active" data-scope="leccion">Esta lección</button>
+            <button type="button" data-scope="curso">Todo el curso</button>
+        </div>
+        <span id="cards-count" class="cards-count"></span>
+    </div>
+
+    <form id="card-form" class="card-form">
+        <input type="text" id="card-front" maxlength="300" placeholder="Frente: pregunta o concepto" required>
+        <textarea id="card-back" maxlength="1000" rows="2" placeholder="Reverso: respuesta o explicación" required></textarea>
+        <button type="submit" class="btn-save-notes">+ Agregar tarjeta</button>
+    </form>
+
+    <div id="cards-board" class="cards-board"></div>
+</div>
                 </div>
             </div>
         </div>
@@ -218,5 +238,6 @@
     <script src="java/navbar.js"></script>
     <script src="java/auth-guard.js"></script>
     <script src="java/user.js"></script>
+    <script src="java/notas.js"></script>
 </body>
 </html>

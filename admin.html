@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel admin - ATIS-J TECHNOLOGY</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html" class="logo-link"><img src="img/logo-atisj.png" alt="ATISJ" class="logo-img"></a>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="cursos.html">Cursos</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="cursos2.html">Mis cursos</a>
+        </nav>
+        <div class="auth-buttons"></div>
+    </header>
+
+    <main class="admin-wrap" id="admin-app" hidden>
+        <h1>Panel de administración</h1>
+
+        <div class="admin-tabs">
+            <button class="tab active" data-tab="resumen">Resumen</button>
+            <button class="tab" data-tab="pagos">Pagos</button>
+            <button class="tab" data-tab="usuarios">Usuarios</button>
+            <button class="tab" data-tab="cursos">Cursos</button>
+            <button class="tab" data-tab="certificados">Certificados</button>
+        </div>
+
+        <section id="tab-resumen" class="panel"></section>
+        <section id="tab-pagos" class="panel" hidden></section>
+        <section id="tab-usuarios" class="panel" hidden></section>
+        <section id="tab-cursos" class="panel" hidden></section>
+        <section id="tab-certificados" class="panel" hidden></section>
+    </main>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="java/supabase-client.js"></script>
+    <script src="java/navbar.js"></script>
+    <script src="java/admin.js"></script>
+</body>
+</html>

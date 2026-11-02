@@ -1,0 +1,38 @@
+.cards-toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.cards-scope{display:inline-flex;border:1px solid rgba(255,255,255,.18);border-radius:999px;overflow:hidden}
+.cards-scope button{background:none;border:0;color:#cbd5e1;padding:7px 16px;cursor:pointer;font:inherit;font-size:.85rem}
+.cards-scope button.active{background:#06b6d4;color:#04121a;font-weight:700}
+.cards-count{color:#94a3b8;font-size:.85rem}
+
+.card-form{display:grid;gap:8px;margin-bottom:18px}
+.card-form input,.card-form textarea{background:#0b1224;color:#e8eefc;border:1px solid rgba(255,255,255,.2);
+  border-radius:10px;padding:10px 12px;font:inherit;resize:vertical;width:100%;box-sizing:border-box}
+.card-form button{justify-self:start}
+
+.cards-board{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:start}
+.fcol{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;
+  padding:12px;min-height:140px;transition:.15s}
+.fcol.over{border-color:#06b6d4;background:rgba(6,182,212,.08)}
+.fcol h4{margin:0 0 10px;font-size:.9rem;display:flex;justify-content:space-between;align-items:center}
+.fcol h4 span{background:rgba(255,255,255,.1);border-radius:999px;padding:1px 9px;font-size:.75rem}
+.fcol[data-estado="nueva"] h4{color:#fbbf24}
+.fcol[data-estado="aprendiendo"] h4{color:#60a5fa}
+.fcol[data-estado="dominada"] h4{color:#4ade80}
+
+.fcard{background:#111a33;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 12px;
+  margin-bottom:10px;cursor:pointer;color:#e8eefc}
+.fcard:hover{border-color:rgba(255,255,255,.35)}
+.fcard.dragging{opacity:.4}
+.fcard .f-lesson{display:block;font-size:.7rem;color:#94a3b8;margin-bottom:4px}
+.fcard .f-front{font-weight:600;white-space:pre-wrap;word-break:break-word}
+.fcard .f-back{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(255,255,255,.2);
+  color:#a5f3fc;white-space:pre-wrap;word-break:break-word}
+.fcard .f-hint{display:block;margin-top:6px;font-size:.7rem;color:#64748b}
+.fcard .f-actions{display:flex;gap:6px;margin-top:8px}
+.fcard .f-actions button{background:rgba(255,255,255,.08);color:#cbd5e1;border:0;border-radius:6px;
+  padding:3px 9px;cursor:pointer;font-size:.8rem}
+.fcard .f-actions button:hover{background:rgba(255,255,255,.18)}
+.fcard .f-actions .f-del{margin-left:auto;color:#f87171}
+.cards-empty{color:#64748b;font-size:.82rem;text-align:center;padding:14px 0}
+
+@media (max-width:800px){.cards-board{grid-template-columns:1fr}}
