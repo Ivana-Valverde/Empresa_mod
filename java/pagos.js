@@ -1,51 +1,77 @@
+// Cargar los productos acumulados desde localStorage al iniciar la página
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Obtener datos pasados por la URL
-    const params = new URLSearchParams(window.location.search);
-    
-    const titulo = params.get('titulo') || 'HTML y CSS Pro';
-    const categoria = params.get('categoria') || 'Diseño web';
-    const desc = params.get('desc') || 'Maquetación responsiva y accesible.';
-    const precio = params.get('precio') || '200';
-    const moneda = params.get('moneda') || 'PEN';
-    const img = params.get('img') || 'img/html.png';
+    renderizarCarrito();
 
-    // 2. Reemplazar valores en el HTML
-    document.getElementById('course-title').textContent = titulo;
-    document.getElementById('course-category').textContent = categoria;
-    document.getElementById('course-desc').textContent = desc;
-    document.getElementById('course-price').textContent = `${moneda === 'PEN' ? 'S/.' : '$'}${precio}`;
-    document.getElementById('course-currency').textContent = moneda;
-    document.getElementById('course-img').src = img;
-    document.getElementById('btn-pay').textContent = `Pagar ${moneda === 'PEN' ? 'S/.' : '$'}${precio} ${moneda}`;
-
-    // 3. Formato del formulario de tarjeta
-    const cardNumberInput = document.getElementById('card-number');
-    const cardExpiryInput = document.getElementById('card-expiry');
-    const paymentForm = document.getElementById('payment-form');
-
-    if (cardNumberInput) {
-        cardNumberInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\D/g, '');
-            value = value.replace(/(.{4})/g, '$1 ').trim();
-            e.target.value = value.substring(0, 19);
-        });
-    }
-
-    if (cardExpiryInput) {
-        cardExpiryInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length >= 2) {
-                value = value.substring(0, 2) + '/' + value.substring(2, 4);
-            }
-            e.target.value = value.substring(0, 5);
-        });
-    }
-
+    const paymentForm = document.getElementById('paymentForm');
     if (paymentForm) {
-        paymentForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert(`¡Pago procesado con éxito para el curso "${titulo}"!`);
-            window.location.href = 'cursos2.html';
-        });
+        paymentForm.addEventListener('submit', procesarPago);
     }
 });
+
+function obtenerCarrito() {
+    return JSON.parse(localStorage.getItem('atisj_carrito')) || [];
+}
+
+function renderizarCarrito() {
+    const carrito = obtenerCarrito();
+    const container = document.getElementById('cartItemsList');
+    const totalElement = document.getElementById('grandTotal');
+
+    if (!container || !totalElement) return;
+
+    if (carrito.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; color: #9ca3af; padding: 20px 0;">
+                <p>No tienes cursos en tu carrito todavía.</p>
+                <a href="cursos.html" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem; margin-top: 8px; display: inline-block;">← Ver cursos disponibles</a>
+            </div>
+        `;
+        totalElement.textContent = 'S/.0.00 PEN';
+        return;
+    }
+
+    let sumaTotal = 0;
+
+    container.innerHTML = carrito.map((item, index) => {
+        const precioNum = Number(item.precio) || 0;
+        sumaTotal += precioNum;
+
+        return `
+            <div class="cart-summary-item">
+                <div class="cart-item-info">
+                    <span class="cart-item-title">${item.titulo}</span>
+                    <span class="cart-item-price">S/.${precioNum.toFixed(2)} PEN</span>
+                </div>
+                <button type="button" class="btn-remove-item" onclick="eliminarDelCarrito(${index})" title="Eliminar curso">✕</button>
+            </div>
+        `;
+    }).join('');
+
+    totalElement.textContent = `S/.${sumaTotal.toFixed(2)} PEN`;
+}
+
+function eliminarDelCarrito(index) {
+    let carrito = obtenerCarrito();
+    carrito.splice(index, 1);
+    localStorage.setItem('atisj_carrito', JSON.stringify(carrito));
+    renderizarCarrito();
+}
+
+function procesarPago(event) {
+    event.preventDefault();
+    const carrito = obtenerCarrito();
+
+    if (carrito.length === 0) {
+        alert('Tu carrito está vacío. Agrega al menos un curso antes de continuar.');
+        return;
+    }
+
+    const nombres = document.getElementById('nombres').value;
+    const correo = document.getElementById('correo').value;
+
+    alert(`¡Gracias por tu compra, ${nombres}! Se enviará la confirmación y tus accesos al correo: ${correo}`);
+
+    // Limpiar carrito tras completar el pago
+    localStorage.removeItem('atisj_carrito');
+    window.location.href = 'index.html';
+}

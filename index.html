@@ -17,6 +17,7 @@
         <source src="videos/matrix-azul.mp4" type="video/mp4">
     </video>
 
+
     <!-- Navbar -->
     <header class="navbar">
         <div class="logo">
@@ -28,11 +29,9 @@
             <a href="#" class="active">Inicio</a>
             <a href="cursos.html">Cursos</a>
             <a href="nosotros.html">Nosotros</a>
-            <a href="cursos2.html">Mis cursos</a>
+            <a href="cursos2.html">Plataforma</a>
         </nav>
-        <div class="auth-buttons">
-            <a href="registrar.html" class="btn-primary-outline">Crear cuenta</a>
-        </div>
+        
     </header>
     <!-- CARRUSEL BANNER GRANDE ESTILO ATISJ (3 TEMAS TECNOLÓGICOS) -->
 <section class="promo-carousel-wrapper">
@@ -471,5 +470,216 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="java/supabase-client.js"></script>
     <script src="java/navbar.js"></script>
+
+    <!-- MODAL PROMOCIONAL DIRECTO -->
+    <style>
+        .promo-modal-overlay {
+            display: none !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background-color: rgba(3, 7, 18, 0.85) !important;
+            backdrop-filter: blur(8px) !important;
+            -webkit-backdrop-filter: blur(8px) !important;
+            z-index: 999999 !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+
+        .promo-modal-overlay.show {
+            display: flex !important;
+        }
+
+        .promo-modal-container {
+            background: #0d1117 !important;
+            border: 2px solid #38bdf8 !important;
+            border-radius: 20px !important;
+            width: 90% !important;
+            max-width: 780px !important;
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.4) !important;
+            position: relative !important;
+            overflow: hidden !important;
+            color: #ffffff !important;
+            padding: 30px !important;
+            box-sizing: border-box !important;
+        }
+
+        .promo-modal-close {
+            position: absolute !important;
+            top: 15px !important;
+            right: 15px !important;
+            background: rgba(255, 255, 255, 0.15) !important;
+            border: none !important;
+            color: #ffffff !important;
+            font-size: 20px !important;
+            width: 34px !important;
+            height: 34px !important;
+            border-radius: 50% !important;
+            cursor: pointer !important;
+            z-index: 10 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .promo-modal-close:hover {
+            background: #ef4444 !important;
+        }
+
+        .promo-modal-body {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 24px !important;
+            align-items: center !important;
+        }
+
+        .promo-left h2 {
+            font-size: 1.5rem !important;
+            font-weight: 900 !important;
+            line-height: 1.2 !important;
+            margin-bottom: 10px !important;
+            color: #ffffff !important;
+        }
+
+        .highlight-cyan {
+            color: #38bdf8 !important;
+        }
+
+        .promo-subtitle {
+            font-size: 0.88rem !important;
+            color: #9ca3af !important;
+            margin-bottom: 14px !important;
+        }
+
+        .promo-courses-list {
+            list-style: none !important;
+            padding: 0 !important;
+            margin: 0 0 18px 0 !important;
+            font-size: 0.84rem !important;
+        }
+
+        .promo-courses-list li {
+            margin-bottom: 6px !important;
+            color: #e2e8f0 !important;
+        }
+
+        .promo-courses-list strong {
+            color: #38bdf8 !important;
+        }
+
+        .promo-price-box {
+            margin-bottom: 16px !important;
+            font-size: 1.05rem !important;
+            font-weight: 700 !important;
+        }
+
+        .btn-promo-cta {
+            display: block !important;
+            text-align: center !important;
+            background: #38bdf8 !important;
+            color: #030712 !important;
+            font-weight: 800 !important;
+            padding: 12px 20px !important;
+            border-radius: 30px !important;
+            text-decoration: none !important;
+            transition: background 0.2s !important;
+        }
+
+        .btn-promo-cta:hover {
+            background: #7dd3fc !important;
+        }
+
+        .promo-right {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 12px !important;
+        }
+
+        .promo-badge {
+            background: rgba(56, 189, 248, 0.15) !important;
+            border: 1px solid rgba(56, 189, 248, 0.3) !important;
+            padding: 10px 14px !important;
+            border-radius: 10px !important;
+            font-size: 0.82rem !important;
+            text-align: center !important;
+            color: #e0f2fe !important;
+        }
+
+        .promo-mockup-graphic img {
+            width: 100% !important;
+            height: auto !important;
+            border-radius: 12px !important;
+            display: block !important;
+        }
+
+        @media (max-width: 640px) {
+            .promo-modal-body {
+                grid-template-columns: 1fr !important;
+            }
+            .promo-right {
+                display: none !important;
+            }
+        }
+    </style>
+
+    <div id="promoModal" class="promo-modal-overlay">
+        <div class="promo-modal-container">
+            <button onclick="closePromoModal()" class="promo-modal-close">✕</button>
+            <div class="promo-modal-body">
+                <div class="promo-left">
+                    <h2>¡IMPULSA TU FUTURO <br><span class="highlight-cyan">DESDE CERO!</span></h2>
+                    <p class="promo-subtitle">Aprende las habilidades más demandadas hoy:</p>
+                    
+                    <ul class="promo-courses-list">
+                        <li><strong>DESARROLLO WEB:</strong> HTML y CSS desde 0</li>
+                        <li><strong>PROGRAMACIÓN:</strong> Python Básico</li>
+                        <li><strong>DISEÑO:</strong> Diseño Gráfico desde 0</li>
+                        <li><strong>MULTIMEDIA:</strong> Animación desde 0</li>
+                        <li><strong>INFRAESTRUCTURA:</strong> Redes desde 0</li>
+                    </ul>
+
+                    <div class="promo-price-box">
+                        ¡CURSOS DESDE <strong>S/.5 PEN</strong>!
+                    </div>
+
+                    <a href="registrar.html" class="btn-promo-cta">¡INSCRÍBETE YA!</a>
+                </div>
+
+                <div class="promo-right">
+                    <div class="promo-badge">¡Acceso inmediato a tutorías personalizadas y proyectos reales!</div>
+                    <div class="promo-mockup-graphic">
+                        <img src="img/html.png" alt="Cursos ATIS-J">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // FORZAR APERTURA AUTOMÁTICA
+        (function() {
+            function showPopup() {
+                var modal = document.getElementById('promoModal');
+                if (modal) {
+                    modal.classList.add('show');
+                }
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', showPopup);
+            } else {
+                showPopup();
+            }
+        })();
+
+        function closePromoModal() {
+            var modal = document.getElementById('promoModal');
+            if (modal) {
+                modal.classList.remove('show');
+            }
+        }
+    </script>
 </body>
 </html>

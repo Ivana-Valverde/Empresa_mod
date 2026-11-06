@@ -21,44 +21,71 @@
             <a href="index.html">Inicio</a>
             <a href="cursos.html" class="active">Cursos</a>
             <a href="nosotros.html">Nosotros</a>
-            <a href="cursos2.html">Mis cursos</a>
+            <a href="cursos2.html">Plataforma</a>
         </nav>
-        <div class="auth-buttons">
-            <a href="registrar.html" class="btn-primary-outline">Crear cuenta</a>
-        </div>
+      
     </header>
 
     <main class="co" id="co">
         <div class="co-head">
             <h1>Reservar tutoría</h1>
             <ol class="stepper" id="stepper">
-                <li class="on"><b>1</b> Tus datos</li>
-                <li><b>2</b> Pago</li>
+                <li class="on"><b>1</b> Alumno</li>
+                <li><b>2</b> Tutoría</li>
                 <li><b>3</b> Confirmación</li>
+                <li><b>4</b> Pago</li>
             </ol>
         </div>
 
         <div class="co-grid" id="co-grid">
             <div class="co-main">
-                <section class="box" id="tut">
+                <section class="box" id="box-who">
+                    <h2>¿Cómo vas a reservar?</h2>
+                    <div class="opts">
+                        <button type="button" class="opt" id="btn-inscrito" aria-pressed="false"><div><strong>Ya soy alumno</strong><small>Tengo un curso pagado</small></div></button>
+                        <button type="button" class="opt" id="btn-nuevo" aria-pressed="false"><div><strong>Soy alumno nuevo</strong><small>Aún no tengo cuenta</small></div></button>
+                    </div>
+                    <p class="note" id="who-msg" hidden></p>
+                </section>
+
+                <section class="box" id="tut" hidden>
                     <h2>Tu tutoría 1 a 1</h2>
                     <p class="lbl">Plan</p><div class="opts" id="planes"></div>
                     <p class="lbl">Mentor</p><div class="opts" id="mentores"></div>
                     <p class="lbl">Día y hora <small>(hora de Lima)</small></p>
                     <div class="dias" id="dias"></div><div class="horas" id="horas"></div>
                     <p class="hint" id="hint"></p>
+                    <p class="note bad" id="step-msg" hidden></p>
+                    <div class="nav"><button type="button" class="back" data-to="1">← Atrás</button><button type="button" class="next" data-next="3">Continuar</button></div>
                 </section>
 
                 <form id="pay-form" novalidate>
-                    <section class="box">
+                    <section class="box" id="box-datos" hidden>
                         <h2>Tus datos</h2>
                         <div class="row2">
                             <div class="fld"><input id="nombre" placeholder="Nombre completo" autocomplete="name"><small class="err" id="e-nombre"></small></div>
                             <div class="fld"><input id="correo" type="email" placeholder="Correo electrónico" autocomplete="email"><small class="err" id="e-correo"></small></div>
                         </div>
+                        <div id="extra-nuevo" hidden>
+                            <div class="row2">
+                                <div class="fld"><input id="ap-pat" placeholder="Apellido paterno"><small class="err" id="e-appat"></small></div>
+                                <div class="fld"><input id="ap-mat" placeholder="Apellido materno"><small class="err" id="e-apmat"></small></div>
+                            </div>
+                            <div class="row2">
+                                <div class="fld"><select id="tipodoc"><option value="">Tipo de documento</option><option>DNI</option><option>Carné de extranjería</option><option>Pasaporte</option></select><small class="err" id="e-tipodoc"></small></div>
+                                <div class="fld"><input id="doc" placeholder="Número de documento" maxlength="12"><small class="err" id="e-doc"></small></div>
+                            </div>
+                        </div>
+                        <div class="fld"><input id="telefono" placeholder="Teléfono / WhatsApp (9 dígitos)" inputmode="numeric" maxlength="9" autocomplete="tel"><small class="err" id="e-tel"></small></div>
+                        <div id="extra-acepto" hidden>
+                            <label class="chk"><input type="checkbox" id="acepto"> Acepto las condiciones y el aviso sobre tratamiento de datos personales</label>
+                            <small class="err" id="e-acepto"></small>
+                        </div>
+                        <p class="note bad" id="datos-msg" hidden></p>
+                        <div class="nav"><span></span><button type="button" class="next" data-next="2">Continuar</button></div>
                     </section>
 
-                    <section class="box">
+                    <section class="box" id="box-metodo" hidden>
                         <div class="box-top">
                             <h2>Método de pago</h2>
                             <select id="moneda" aria-label="Moneda"><option value="PEN">S/ PEN</option><option value="USD">$ USD</option></select>
@@ -81,9 +108,16 @@
                                 <p>Yapea o Plinea al <b>999 999 999</b><br>a nombre de <b>ATIS-J TECHNOLOGY</b>.<br><small>Número de ejemplo (demo). Solo en soles.</small></p></div>
                             <div class="fld"><input id="op" placeholder="Código de operación (6 a 10 dígitos)" inputmode="numeric"><small class="err" id="e-op"></small></div>
                         </div>
+                        <div class="nav"><button type="button" class="back" data-to="3">← Atrás</button><span></span></div>
                         <p class="demo"></p>
                     </section>
                 </form>
+
+                <section class="box" id="st3" hidden>
+                    <h2>Confirma tus datos</h2>
+                    <ul class="lines" id="c-lines"></ul>
+                    <div class="nav"><span><button type="button" class="back" data-to="1">Editar datos</button> <button type="button" class="back" data-to="2">Cambiar tutoría</button></span><button type="button" class="next" data-next="4">Continuar al pago</button></div>
+                </section>
             </div>
 
             <aside class="co-side">
@@ -108,7 +142,7 @@
                         <div class="big"><span>Total</span><span id="r-total"></span></div>
                     </div>
                     <small class="status" id="status" role="alert" hidden></small>
-                    <button type="submit" form="pay-form" class="cta" id="btn-pay">Pagar ahora</button>
+                    <button type="submit" form="pay-form" class="cta" id="btn-pay" hidden>Pagar ahora</button>
 
                     <ul class="seals">
                         <li>🔒 Pago cifrado SSL</li><li>🛡 Compra segura</li><li>✅ Garantía de satisfacción</li>

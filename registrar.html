@@ -3,12 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crea tu cuenta - ATIS-J TECHNOLOGY</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/registrar.css">
+    <title>Checkout - ATIS-J Technology</title>
+    <link rel="stylesheet" href="css/styles.css?v=20.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #030712;
+            color: #f9fafb;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: rgba(3, 7, 18, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-img {
+            width: 160px;
+            height: auto;
+            display: block;
+        }
+
+        .secure-badge {
+            color: #38bdf8;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 30px;
+            max-width: 1150px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .checkout-box {
+            background: #0d1117;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .checkout-box h2 {
+            font-size: 1.25rem;
+            color: #38bdf8;
+            font-weight: 800;
+            margin-bottom: 22px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            font-weight: 600;
+        }
+
+        .form-group input, 
+        .form-group select {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 11px 14px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .info-alert {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin: 20px 0;
+            font-size: 0.83rem;
+            color: #e0f2fe;
+        }
+
+        .terms-group {
+            margin-bottom: 24px;
+        }
+
+        .checkbox-label {
+            font-size: 0.83rem;
+            color: #9ca3af;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .btn-pay {
+            width: 100%;
+            background: #2563eb;
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .cart-items-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .coupon-box {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .coupon-box input {
+            flex-grow: 1;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 9px 12px;
+            color: #ffffff;
+        }
+
+        .coupon-box button {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            padding: 9px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .grand-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #ffffff;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 16px;
+        }
+
+        .grand-total span:last-child {
+            color: #38bdf8;
+        }
+
+        @media (max-width: 850px) {
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -16,7 +201,7 @@
         <source src="videos/matrix-azul.mp4" type="video/mp4">
     </video>
 
-    <!-- Header / Navbar -->
+    <!-- Header Navbar -->
     <header class="navbar">
         <div class="logo">
             <a href="index.html" class="logo-link">
@@ -27,58 +212,193 @@
             <a href="index.html">Inicio</a>
             <a href="cursos.html">Cursos</a>
             <a href="nosotros.html">Nosotros</a>
-            <a href="cursos2.html">Mis cursos</a>
+            <a href="cursos2.html">Plataforma</a>
         </nav>
         <div class="auth-buttons">
-            <a href="registrar.html" class="btn-primary-outline active">Crear cuenta</a>
+            <a href="pagos.html" class="btn-primary-outline" id="cartBtn">🛒 Carrito (0)</a>
         </div>
     </header>
 
-    <!-- Formulario de Registro -->
-    <main class="auth-container">
-        <div class="auth-card">
-            <h1>Crea tu cuenta</h1>
-            <p class="auth-subtitle">Regístrate para comprar cursos y entrar a tu aula en línea.</p>
+    <!-- Layout Principal -->
+    <main class="checkout-layout">
+        
+        <!-- DATOS DEL ALUMNO -->
+        <section class="checkout-box">
+            <h2>DATOS DEL ALUMNO</h2>
+            <form id="paymentForm">
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label for="nombres">Nombres completos</label>
+                        <input type="text" id="nombres" placeholder="Ingresa tus nombres" required>
+                    </div>
 
-            <button class="btn-google" type="button" onclick="loginConGoogle()">
-                <svg class="google-icon" width="18" height="18" viewBox="0 0 24 24">
-                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                </svg>
-                Continuar con Google
-            </button>
+                    <div class="form-group">
+                        <label for="paterno">Apellido paterno</label>
+                        <input type="text" id="paterno" placeholder="Ingresa tu apellido" required>
+                    </div>
 
-            <div class="divider">
-                <span>o con tu correo</span>
-            </div>
+                    <div class="form-group">
+                        <label for="materno">Apellido materno</label>
+                        <input type="text" id="materno" placeholder="Ingresa tu apellido" required>
+                    </div>
 
-            <form id="register-form">
-                <div class="input-group">
-                    <input type="text" id="fullname" placeholder="Tu nombre" required>
+                    <div class="form-group">
+                        <label for="celular">Número de celular</label>
+                        <input type="tel" id="celular" placeholder="Ingresa tu número celular" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo" placeholder="Ingresa tu correo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipoDoc">Tipo de documento</label>
+                        <select id="tipoDoc" required>
+                            <option value="" disabled selected>Seleccione una opción</option>
+                            <option value="dni">DNI</option>
+                            <option value="ce">Carnet de Extranjería</option>
+                            <option value="pasaporte">Pasaporte</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="documento">Número de documento</label>
+                        <input type="text" id="documento" placeholder="Ingresa tu documento" required>
+                    </div>
                 </div>
-                <div class="input-group">
-                    <input type="email" id="reg-email" placeholder="correo@ejemplo.com" required>
-                </div>
-                <div class="input-group">
-                    <input type="password" id="reg-password" placeholder="Contraseña (mínimo 6 caracteres)" required minlength="6">
+
+                <div class="info-alert">
+                    <span>ℹ️ Asegúrate de ingresar bien tus datos. Se usarán para la inscripción y acceso al curso.</span>
                 </div>
 
-                <button type="submit" class="btn-submit">Crear cuenta</button>
+                <div class="terms-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" required> Acepto las condiciones y aviso sobre tratamiento de datos personales
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-pay">CONTINUAR AL PAGO ➔</button>
             </form>
+        </section>
 
-            <div class="auth-footer">
-                <span>¿Ya tienes cuenta? <a href="iniciar.html" class="auth-link">Entra aquí</a></span>
+        <!-- RESUMEN DE COMPRA -->
+        <section class="checkout-box">
+            <h2>RESUMEN DE COMPRA</h2>
+            
+            <div id="cartItemsList" class="cart-items-container">
+                <!-- Se llena con JS -->
             </div>
-        </div>
+
+            <div class="coupon-box">
+                <input type="text" placeholder="Ingresa tu cupón">
+                <button type="button">VALIDAR</button>
+            </div>
+
+            <div class="grand-total">
+                <span>TOTAL</span>
+                <span id="grandTotal">S/.0.00 PEN</span>
+            </div>
+        </section>
     </main>
 
-    <!-- El orden importa: librería → conexión → lógica -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="java/supabase-client.js"></script>
-    <script src="java/navbar.js"></script>
-    <script src="java/registrar.js"></script>
+    <!-- Script embebido de sincronización -->
+   <!-- Script de sincronización con validación de campos completos -->
+   <script>
+    // Cargar los cursos en el resumen de compra al abrir la página
+    function cargarResumenCompra() {
+        const carrito = JSON.parse(localStorage.getItem('atisj_carrito')) || [];
+        const container = document.getElementById('cartItemsList');
+        const totalElement = document.getElementById('grandTotal');
+        const btnCart = document.getElementById('cartBtn');
+
+        if (btnCart) {
+            btnCart.textContent = `🛒 Carrito (${carrito.length})`;
+        }
+
+        if (!container || !totalElement) return;
+
+        if (carrito.length === 0) {
+            container.innerHTML = `
+                <div style="text-align: center; color: #9ca3af; padding: 20px 0;">
+                    <p style="margin-bottom: 10px;">No has seleccionado ningún curso aún.</p>
+                    <a href="cursos.html" style="color: #38bdf8; text-decoration: none; font-weight: bold;">← Ver catálogo de cursos</a>
+                </div>
+            `;
+            totalElement.textContent = 'S/.0.00 PEN';
+            return;
+        }
+
+        let sumaTotal = 0;
+
+        container.innerHTML = carrito.map((item, index) => {
+            const precioNum = Number(item.precio) || 0;
+            sumaTotal += precioNum;
+
+            return `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #161b22; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px;">
+                    <div>
+                        <div style="color: #ffffff; font-weight: 600; font-size: 0.95rem;">${item.titulo}</div>
+                        <div style="color: #38bdf8; font-weight: 700; font-size: 0.9rem;">S/.${precioNum.toFixed(2)} PEN</div>
+                    </div>
+                    <button type="button" onclick="eliminarCurso(${index})" style="background: transparent; border: none; color: #ef4444; cursor: pointer; font-size: 1.2rem;" title="Eliminar">✕</button>
+                </div>
+            `;
+        }).join('');
+
+        totalElement.textContent = `S/.${sumaTotal.toFixed(2)} PEN`;
+    }
+
+    function eliminarCurso(index) {
+        let carrito = JSON.parse(localStorage.getItem('atisj_carrito')) || [];
+        carrito.splice(index, 1);
+        localStorage.setItem('atisj_carrito', JSON.stringify(carrito));
+        cargarResumenCompra();
+    }
+
+    // VALIDACIÓN AL HACER CLIC EN "CONTINUAR AL PAGO"
+    document.getElementById('paymentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // 1. Obtener valores de cada campo
+        const datosAlumno = {
+            nombres: document.getElementById('nombres').value.trim(),
+            paterno: document.getElementById('paterno').value.trim(),
+            materno: document.getElementById('materno').value.trim(),
+            celular: document.getElementById('celular').value.trim(),
+            correo: document.getElementById('correo').value.trim(),
+            tipoDoc: document.getElementById('tipoDoc').value,
+            documento: document.getElementById('documento').value.trim()
+        };
+
+        const checkbox = this.querySelector('input[type="checkbox"]').checked;
+        const carrito = JSON.parse(localStorage.getItem('atisj_carrito')) || [];
+
+        // 2. Comprobar que NO haya campos vacíos
+        if (!datosAlumno.nombres || !datosAlumno.paterno || !datosAlumno.materno || 
+            !datosAlumno.celular || !datosAlumno.correo || !datosAlumno.tipoDoc || !datosAlumno.documento) {
+            alert('⚠️ Debes rellenar todos los campos del formulario para continuar.');
+            return;
+        }
+
+        // 3. Comprobar términos
+        if (!checkbox) {
+            alert('⚠️ Debes aceptar los términos y condiciones sobre el tratamiento de datos.');
+            return;
+        }
+
+        // 4. Comprobar que haya cursos en el carrito
+        if (carrito.length === 0) {
+            alert('⚠️ Tu carrito está vacío. Agrega al menos un curso antes de proceder al pago.');
+            return;
+        }
+
+        // 5. Guardar los datos en localStorage y redirigir a pago2.html
+        localStorage.setItem('atisj_datos_alumno', JSON.stringify(datosAlumno));
+        window.location.href = 'pago2.html';
+    });
+
+    window.addEventListener('DOMContentLoaded', cargarResumenCompra);
+</script>
 </body>
 </html>
-

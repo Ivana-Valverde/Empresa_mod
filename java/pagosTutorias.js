@@ -14,6 +14,8 @@
     { id: 'jerson', nombre: 'Jerson Ruelas', rol: 'HTML', foto: 'img/jerson.png' },
     { id: 'angela', nombre: 'Angela Ochoa', rol: 'Animación', foto: 'img/ange.jpeg' }
   ];
+  // true: el alumno nuevo registra sus datos y paga; su cuenta se crea y recibe usuario y contraseña por correo. false: debe comprar primero un curso.
+  var NUEVO_PUEDE_PAGAR = true;
   var HORAS = ['09:00', '11:00', '15:00', '17:00', '19:00'];
   var INCL_CURSO = ['6 lecciones en video (≈1 h)', 'Proyecto final guiado', 'Certificado al finalizar', 'Acceso de por vida', 'Comunidad en Discord'];
   var INCL_TUT = ['Sesión en vivo 1 a 1 de 60 min', 'Revisión de tu código y diseños', 'Mentor a tu elección', 'Reprogramación con 24 h de aviso'];
@@ -28,7 +30,7 @@
 
   var curso = q.get('curso') || '';
   var tutoria = true; // esta página solo cobra tutorías
-  var st = { plan: null, mentor: null, fecha: null, hora: null, metodo: 'card', dto: 0, cupon: '' };
+  var st = { paso: 1, tipo: null, habil: false, uid: null, plan: null, mentor: null, fecha: null, hora: null, metodo: 'card', dto: 0, cupon: '' };
   // Precio de los cursos: igual al catálogo (S/.5). Se ignora el parámetro ?precio= de la URL.
   var PRECIO_CURSO = 5, precioCurso = PRECIO_CURSO;
 
@@ -76,7 +78,7 @@
   function pintar() {
     opciones($('planes'), PLANES, 'plan', function (b, p) { var d = el('div'); d.appendChild(el('strong', '', p.nombre)); d.appendChild(el('small', '', 'S/.' + p.precio)); b.appendChild(d); });
     opciones($('mentores'), MENTORES, 'mentor', function (b, m) {
-      var i = el('img'); i.src = m.foto; i.alt = ''; var d = el('div'); d.appendChild(el('strong', '', m.nombre)); d.appendChild(el('small', '', m.rol)); b.appendChild(i); b.appendChild(d);
+      var i = el('img'); i.src = m.foto; i.alt = ''; i.onerror = function () { i.onerror = null; i.src = 'img/logo-atisj.png'; }; var d = el('div'); d.appendChild(el('strong', '', m.nombre)); d.appendChild(el('small', '', m.rol)); b.appendChild(i); b.appendChild(d);
     });
     var cd = $('dias'), ch = $('horas'), d = new Date(), n = 0; cd.innerHTML = ''; ch.innerHTML = '';
     d.setHours(0, 0, 0, 0);
@@ -126,7 +128,6 @@
   // ===== Pasos =====
   function paso(n) { document.querySelectorAll('#stepper li').forEach(function (li, i) { li.classList.toggle('on', i < n); }); }
   function datosOk() { return $('nombre').value.trim().length >= 3 && /^\S+@\S+\.\S+$/.test($('correo').value); }
-  ['nombre', 'correo'].forEach(function (i) { $(i).addEventListener('input', function () { paso(datosOk() ? 2 : 1); }); });
 
   // ===== Validación =====
   function luhn(n) { var s = 0, a = false; for (var i = n.length - 1; i >= 0; i--) { var d = +n[i]; if (a) { d *= 2; if (d > 9) d -= 9; } s += d; a = !a; } return s % 10 === 0; }
@@ -153,12 +154,12 @@
   // ===== Envío =====
   $('pay-form').onsubmit = function (ev) {
     ev.preventDefault();
-    if (!validar()) return;
-    var b = $('btn-pay'); b.disabled = true; b.textContent = 'Procesando…'; paso(2);
+    if (st.paso !== 4 || !validar()) return;
+    var b = $('btn-pay'); b.disabled = true; b.textContent = 'Procesando…';
     setTimeout(function () {
       var p = plan(), m = mentor(), metodo = { card: 'Tarjeta •••• ' + $('card').value.replace(/\s/g, '').slice(-4), yape: 'Yape / Plin' }[st.metodo];
       var r = { id: 'ATIS-' + Date.now().toString(36).toUpperCase(), tipo: tutoria ? 'tutoria' : 'curso', cursoId: q.get('cursoId') || null,
-        concepto: tutoria ? p.nombre : (curso || 'Curso'), comprador: $('nombre').value.trim(), correo: $('correo').value.trim(), metodo: metodo,
+        concepto: tutoria ? p.nombre : (curso || 'Curso'), comprador: $('nombre').value.trim(), telefono: $('telefono').value, crearCuenta: st.tipo === 'nuevo', apellidos: st.tipo === 'nuevo' ? ($('ap-pat').value + ' ' + $('ap-mat').value).trim() : null, documento: st.tipo === 'nuevo' ? $('tipodoc').value + ' ' + $('doc').value : null, tipoAlumno: st.tipo, userId: st.uid, correo: $('correo').value.trim(), metodo: metodo,
         total: total(), moneda: $('moneda').value, estado: 'Pagado', pagadoEn: new Date().toISOString() }; // no se guarda número de tarjeta ni CVC
       if (tutoria) { r.mentorId = m.id; r.mentor = m.nombre; r.fecha = st.fecha; r.hora = st.hora; }
       try { var l = guardados(); l.push(r); localStorage.setItem('atisj_pagos', JSON.stringify(l)); } catch (x) {}
@@ -166,15 +167,97 @@
     }, 1200);
   };
   function confirmar(r) {
-    $('co-grid').hidden = true; $('ok').hidden = false; paso(3);
-    $('ok-msg').textContent = r.tipo === 'tutoria' ? 'Tu tutoría quedó reservada. Te enviaremos los detalles a ' + r.correo + '.' : 'Tu curso ya está activo. Enviamos el comprobante a ' + r.correo + '.';
-    var f = [['N.º de operación', r.id], ['Concepto', r.concepto], ['Comprador', r.comprador]];
-    if (r.mentor) f.push(['Mentor', r.mentor], ['Fecha y hora', r.fecha + ' · ' + r.hora]);
+    $('co-grid').hidden = true; $('ok').hidden = false; paso(4);
+    $('ok-msg').textContent = r.tipo === 'tutoria' ? (r.crearCuenta ? 'Tu tutoría quedó reservada. Creamos tu cuenta y enviaremos tu usuario y contraseña a ' : 'Tu tutoría quedó reservada. Te enviaremos los detalles a ') + r.correo + '.' : 'Tu curso ya está activo. Enviamos el comprobante a ' + r.correo + '.';
+    var cuando = new Date(r.pagadoEn);
+    var f = [['N.º de operación', r.id], ['Tipo de alumno', r.tipoAlumno === 'inscrito' ? 'Alumno inscrito' : 'Alumno nuevo'],
+      ['Fecha de pago', cuando.toLocaleDateString('es-PE', { day: 'numeric', month: 'long', year: 'numeric' }) + ' · ' + cuando.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' })],
+      ['Concepto', r.concepto], ['Comprador', r.comprador]];
+    if (r.mentor) f.push(['Mentor', r.mentor], ['Sesión', new Date(r.fecha + 'T00:00:00').toLocaleDateString('es-PE', { weekday: 'long', day: 'numeric', month: 'long' }) + ' · ' + r.hora + ' (hora de Lima)']);
     f.push(['Método', r.metodo], ['Total', (r.moneda === 'USD' ? '$' + (r.total / USD).toFixed(2) : 'S/.' + r.total.toFixed(2)) + ' ' + r.moneda]);
     var dl = $('rec'); dl.innerHTML = '';
     f.forEach(function (x) { dl.appendChild(el('dt', '', x[0])); dl.appendChild(el('dd', '', x[1])); });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+
+  // ===== Pasos: alumno inscrito / nuevo → tutoría → confirmación → pago =====
+  var PASOS = { 1: ['box-who'], 2: ['tut'], 3: ['st3'], 4: ['box-metodo'] };
+  function ir(n) {
+    st.paso = n;
+    Object.keys(PASOS).forEach(function (k) { PASOS[k].forEach(function (id) { $(id).hidden = +k !== n; }); });
+    $('box-datos').hidden = !(n === 1 && st.habil);
+    $('btn-pay').hidden = n !== 4;
+    ['step-msg', 'datos-msg'].forEach(function (i) { $(i).hidden = true; });
+    paso(n);
+    if (n === 3) confirmacion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function aviso(id, txt) { var n = $(id); n.textContent = txt; n.hidden = false; }
+  function nota(html, bad) { var n = $('who-msg'); n.innerHTML = html; n.className = 'note' + (bad ? ' bad' : ''); n.hidden = false; }
+  function marcar(a) { ['inscrito', 'nuevo'].forEach(function (t) { $('btn-' + t).setAttribute('aria-pressed', t === a); }); }
+  function extras(v) { $('extra-nuevo').hidden = !v; $('extra-acepto').hidden = !v; }
+  function bloquear(v) { $('correo').readOnly = v; }
+
+  async function verificarInscrito() {
+    if (typeof db === 'undefined') return { error: 'No se pudo conectar con el servidor.' };
+    var s = (await db.auth.getSession()).data.session;
+    if (!s) return { login: true };
+    var e = await db.from('enrollments').select('id').eq('user_id', s.user.id).eq('estado_pago', 'pagado').limit(1);
+    if (e.error) return { error: 'No pudimos verificar tu inscripción. Inténtalo de nuevo.' };
+    if (!e.data.length) return { sinCurso: true };
+    var p = await db.from('profiles').select('nombre').eq('id', s.user.id).single();
+    return { ok: true, uid: s.user.id, correo: s.user.email, nombre: (p.data && p.data.nombre) || '' };
+  }
+  $('btn-inscrito').onclick = async function () {
+    st.tipo = 'inscrito'; st.habil = false; marcar('inscrito'); $('box-datos').hidden = true; extras(false);
+    nota('Verificando tu inscripción…');
+    var r = await verificarInscrito();
+    if (r.ok) {
+      st.habil = true; st.uid = r.uid; bloquear(true);
+      $('nombre').value = r.nombre || r.correo.split('@')[0]; $('correo').value = r.correo;
+      nota('✓ Inscripción verificada. Completa tu teléfono y continúa.'); $('box-datos').hidden = false;
+    } else if (r.login) nota('Inicia sesión para verificar que eres alumno. <a href="iniciar.html">Iniciar sesión</a>', true);
+    else if (r.sinCurso) nota('Tu cuenta aún no tiene un curso pagado. <a href="cursos.html">Ver cursos</a> o elige «Soy alumno nuevo».', true);
+    else nota(r.error, true);
+  };
+  $('btn-nuevo').onclick = function () {
+    st.tipo = 'nuevo'; st.uid = null; marcar('nuevo'); bloquear(false); extras(NUEVO_PUEDE_PAGAR);
+    if (NUEVO_PUEDE_PAGAR) { st.habil = true; nota('Completa tus datos. Al confirmar el pago se creará tu cuenta y te enviaremos tu usuario y contraseña al correo que indiques. Revísalo bien.'); $('box-datos').hidden = false; }
+    else { st.habil = false; $('box-datos').hidden = true; nota('Para reservar una tutoría necesitas ser alumno inscrito. Compra tu primer curso, recibirás tus accesos por correo y luego vuelve aquí con «Ya soy alumno». <a href="cursos.html">Ver cursos</a>', true); }
+  };
+
+  function paso1ok() {
+    var ok = e('nombre', 'nombre', $('nombre').value.trim().length < 3 ? 'Escribe tu nombre completo.' : '');
+    ok = e('correo', 'correo', /^\S+@\S+\.\S+$/.test($('correo').value) ? '' : 'Correo no válido.') && ok;
+    ok = e('tel', 'telefono', /^9\d{8}$/.test($('telefono').value) ? '' : 'Ingresa un celular de 9 dígitos.') && ok;
+    if (st.tipo === 'nuevo') {
+      ok = e('appat', 'ap-pat', $('ap-pat').value.trim().length < 2 ? 'Ingresa tu apellido paterno.' : '') && ok;
+      ok = e('apmat', 'ap-mat', $('ap-mat').value.trim().length < 2 ? 'Ingresa tu apellido materno.' : '') && ok;
+      ok = e('tipodoc', 'tipodoc', $('tipodoc').value ? '' : 'Elige un tipo de documento.') && ok;
+      var d = $('doc').value.trim(), dni = $('tipodoc').value === 'DNI';
+      ok = e('doc', 'doc', (dni ? /^\d{8}$/.test(d) : /^[A-Za-z0-9]{6,12}$/.test(d)) ? '' : (dni ? 'El DNI tiene 8 dígitos.' : 'Documento no válido.')) && ok;
+      ok = e('acepto', 'acepto', $('acepto').checked ? '' : 'Debes aceptar las condiciones.') && ok;
+    }
+    return ok;
+  }
+  function confirmacion() {
+    var l = $('c-lines'), p = plan(), m = mentor(); l.innerHTML = '';
+    [['Tipo de alumno', st.tipo === 'inscrito' ? 'Alumno inscrito' : 'Alumno nuevo'], ['Nombre', $('nombre').value + (st.tipo === 'nuevo' ? ' ' + $('ap-pat').value + ' ' + $('ap-mat').value : '')], ['Correo', $('correo').value], ['Teléfono', $('telefono').value], ['Documento', st.tipo === 'nuevo' ? $('tipodoc').value + ' ' + $('doc').value : '—'],
+     ['Plan', p.nombre], ['Mentor', m.nombre], ['Fecha y hora', st.fecha + ' · ' + st.hora], ['Total', money(total())]].forEach(function (r) {
+      var li = el('li'); li.appendChild(el('span', '', r[0])); li.appendChild(el('span', '', r[1])); l.appendChild(li);
+    });
+  }
+  document.querySelectorAll('.next').forEach(function (b) {
+    b.onclick = function () {
+      var n = +b.dataset.next;
+      if (n === 2 && !(st.habil && paso1ok())) { if (!st.habil) nota('Elige primero cómo vas a reservar.', true); return; }
+      if (n === 3 && !(st.plan && st.mentor && st.fecha && st.hora)) return aviso('step-msg', 'Elige plan, mentor, día y hora.');
+      ir(n);
+    };
+  });
+  document.querySelectorAll('.back').forEach(function (b) { b.onclick = function () { ir(+b.dataset.to); }; });
+  $('telefono').oninput = function () { this.value = this.value.replace(/\D/g, ''); };
 
   // ===== Inicio =====
   var incl = tutoria ? INCL_TUT : INCL_CURSO;
@@ -182,7 +265,7 @@
   if (tutoria) {
     $('tut').hidden = false;
     st.plan = q.get('plan') || (parseFloat(q.get('precio')) === 200 || /full-stack/i.test(curso) ? 'premium' : 'sesion');
-    pintar();
+    pintar(); ir(1);
   } else {
     $('s-title').textContent = curso || 'Curso ATIS-J';
     $('s-cat').textContent = q.get('categoria') || 'Curso';
