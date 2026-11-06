@@ -1,0 +1,528 @@
+/* Estilos específicos para la página de Catálogo de Cursos */
+
+.catalog-header {
+    padding: 60px 80px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.catalog-title h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.catalog-title p {
+    color: var(--text-secondary, #9ca3af);
+    font-size: 1.1rem;
+}
+
+.catalog-count {
+    color: var(--text-secondary, #9ca3af);
+    font-family: var(--font-code, monospace);
+    font-size: 0.9rem;
+}
+
+.catalog-grid-section {
+    padding: 20px 80px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Grilla y estructura de tarjetas con imagen */
+.courses-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+    gap: 24px !important;
+    width: 100% !important;
+}
+
+.course-card {
+    background-color: var(--card-bg, #0f172a) !important;
+    border: 1px solid var(--card-border, rgba(255, 255, 255, 0.08)) !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+    height: auto !important;
+    color: #ffffff !important;
+}
+
+/* Vista previa con contenedor de alto fijo */
+.card-preview {
+    width: 100% !important;
+    height: 160px !important;
+    min-height: 160px !important;
+    max-height: 160px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    background-color: #1e293b !important;
+    display: block !important;
+}
+
+.card-preview img,
+.course-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    position: static !important;
+}
+
+.card-content {
+    padding: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important;
+    background-color: var(--card-bg, #0f172a) !important;
+    position: relative !important;
+    z-index: 2 !important;
+    color: #ffffff !important;
+}
+
+/* Textos e informativos en blanco con opacidad elegante */
+.card-content p {
+    color: #f1f5f9 !important; /* Párrafo "Aprende..." */
+    font-size: 0.92rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 12px !important;
+}
+
+.card-content h3 {
+    color: #ffffff !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 8px !important;
+}
+
+.category {
+    color: #38bdf8 !important; /* Etiqueta de categoría en azul cyan vibrante */
+    font-size: 0.8rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    margin-bottom: 4px !important;
+}
+
+.course-meta {
+    color: #cbd5e1 !important; /* Metadatos: lecciones, horas, nivel */
+    font-size: 0.82rem !important;
+    margin-bottom: 16px !important;
+}
+
+/* ------------------------------------------
+   PRECIO MÁS GRANDE Y DESTACADO (S/. 5 PEN)
+   ------------------------------------------ */
+.price-row {
+    margin-bottom: 16px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.price {
+    color: #ffd600 !important; /* Amarillo brillante de alto impacto */
+    font-size: 1.8rem !important; /* Aumentado considerablemente */
+    font-weight: 900 !important;
+    line-height: 1 !important;
+}
+
+.price small {
+    font-size: 0.9rem !important;
+    color: #ffffff !important; /* PEN en blanco */
+    font-weight: 700 !important;
+    margin-left: 2px !important;
+}
+
+/* Garantiza que
+
+/* Sección Plan con Tutorías */
+.tutoring-section {
+    padding: 40px 80px 100px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.tutoring-header {
+    margin-bottom: 32px;
+}
+
+.tutoring-header h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.tutoring-header p {
+    color: var(--text-secondary, #9ca3af);
+    font-size: 1.05rem;
+}
+
+.tutoring-container {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.plan-card {
+    background: var(--card-bg, #0f172a);
+    border: 1px solid var(--card-border, rgba(255, 255, 255, 0.08));
+    border-radius: 16px;
+    padding: 16px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.badge-tutoring {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #34d399;
+    color: #042f2e;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-family: var(--font-code, monospace);
+    z-index: 2;
+}
+
+.plan-image {
+    width: 100%;
+    height: 160px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    margin-top: 12px;
+}
+
+.plan-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.plan-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.plan-category {
+    color: var(--primary-green, #34d399);
+    font-size: 0.8rem;
+    font-family: var(--font-code, monospace);
+    margin-bottom: 4px;
+}
+
+.plan-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.plan-card p {
+    color: var(--text-secondary, #9ca3af);
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+}
+
+.plan-meta {
+    font-size: 0.8rem;
+    color: var(--text-secondary, #9ca3af);
+    margin-top: auto;
+    margin-bottom: 16px;
+}
+
+.btn-tutoring {
+    width: 100%;
+    padding: 12px;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-tutoring:hover {
+    background: #2563eb;
+}
+
+/* ==========================================
+   DISEÑO CYBER GRID - TUTORÍAS ATISJ (FULL WIDTH)
+   ========================================== */
+.tutoring-details-v2 {
+    background: radial-gradient(circle at 10% 20%, #1e1035 0%, #0f172a 70%, #080c14 100%);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tutoring-head {
+    margin-bottom: 32px;
+}
+
+.tag-vip-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #7c3aed 0%, #c026d3 100%);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 5px 14px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.4);
+}
+
+.tutoring-head h2 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 6px;
+}
+
+.tutoring-head p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+/* Grilla adaptativa en 2 o 3 columnas según el espacio */
+.features-grid-v2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+/* Tarjetas individuales Glassmorphism */
+.feature-card-v2 {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: all 0.3s ease;
+}
+
+.feature-card-v2:hover {
+    background: rgba(30, 41, 59, 0.85);
+    border-color: rgba(168, 85, 247, 0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.2);
+}
+
+/* Círculos de Check estilizados */
+.check-circle {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.85rem;
+    color: #000000;
+    margin-top: 2px;
+}
+
+.check-circle.green  { background: #10b981; box-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
+.check-circle.purple { background: #c026d3; color: #ffffff; box-shadow: 0 0 10px rgba(192, 38, 211, 0.4); }
+.check-circle.cyan   { background: #06b6d4; box-shadow: 0 0 10px rgba(6, 182, 212, 0.4); }
+.check-circle.yellow { background: #f59e0b; box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
+.check-circle.pink   { background: #f43f5e; color: #ffffff; box-shadow: 0 0 10px rgba(244, 63, 94, 0.4); }
+.check-circle.blue   { background: #3b82f6; color: #ffffff; box-shadow: 0 0 10px rgba(59, 130, 246, 0.4); }
+
+.card-info h4 {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+}
+
+.card-info p {
+    color: #cbd5e1;
+    font-size: 0.82rem;
+    margin: 0;
+    line-height: 1.4;
+}
+/* Contenedor principal centrado */
+.login-prompt-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    width: 100%;
+}
+
+/* Tarjeta contenedora de la vista previa */
+.login-prompt-card {
+    background-color: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 340px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.login-prompt-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(59, 130, 246, 0.4);
+}
+
+/* Contenedor e imagen superior */
+.card-preview {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    background-color: #1e293b;
+}
+
+.course-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Detalles del contenido */
+.card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.category {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-bottom: 6px;
+}
+
+.login-prompt-card h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+    text-align: left;
+}
+
+.login-prompt-card p {
+    font-size: 0.88rem;
+    color: #cbd5e1;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.course-meta {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 16px;
+}
+
+.price-row {
+    margin-top: auto;
+    margin-bottom: 16px;
+}
+
+.price {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.price small {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+/* Estilo del botón (Enlace <a>) */
+.btn-login-main {
+    display: block;
+    width: 100%;
+    background: #3b82f6;
+    color: #ffffff;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-login-main:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+.logo-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.logo-link > .img {
+    display: block;
+    width: 70px;
+    height: auto;
+}
+
+.logo-text {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.logo-text img {
+    display: block;
+    width: 115px;
+    height: auto;
+}
+.social-links {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.social-links a {
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #3b82f6;
+}
+
+.footer-links a {
+    color: #6b7280;
+    text-decoration: none;
+    margin-left: 20px;
+}

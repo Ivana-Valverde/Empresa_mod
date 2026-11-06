@@ -1,0 +1,135 @@
+/* Estilos para la vista de "Mis cursos" / Acceso restringido */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Fondo con resplandor azul ambiental */
+body::before {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(7, 9, 19, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Contenedor principal centrado vertical y horizontalmente */
+.login-prompt-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.login-prompt-card {
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-prompt-card h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-primary, #ffffff);
+    letter-spacing: -0.01em;
+}
+
+.login-prompt-card p {
+    color: var(--text-secondary, #9ca3af);
+    font-size: 1rem;
+    margin-bottom: 32px;
+}
+
+/* Botón central de Iniciar sesión (Enlace transformado en botón) */
+.btn-login-main {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    background-color: #3b82f6;
+    color: #ffffff;
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-login-main:hover {
+    background-color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.btn-login-main:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.logo-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.logo-link > .img {
+    display: block;
+    width: 70px;
+    height: auto;
+}
+
+.logo-text {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.logo-text img {
+    display: block;
+    width: 115px;
+    height: auto;
+}
+.social-links {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.social-links a {
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #3b82f6;
+}
+
+.footer-links a {
+    color: #6b7280;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+
+
+

@@ -1,0 +1,984 @@
+/* ==========================================================
+   user.css — Estilos "Dark Tech & LMS Interactivo" (Mi Perfil)
+   Tema: Cyan & Emerald Neon / Glassmorphism / UI Futurista
+   Compatibilidad: 100% con user.html y user.js
+   ========================================================== */
+
+:root {
+    /* Paleta Cyber / Dark Tech */
+    --tech-bg: #070d14;
+    --tech-surface: rgba(13, 22, 35, 0.75);
+    --tech-surface-card: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, rgba(10, 16, 28, 0.9) 100%);
+    --tech-border: rgba(6, 182, 212, 0.18);
+    --tech-border-glow: rgba(45, 212, 191, 0.4);
+    
+    /* Acentos Neón & Gradientes */
+    --tech-cyan: #06b6d4;
+    --tech-teal-bright: #2dd4bf;
+    --tech-emerald: #10b981;
+    --grad-tech: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
+    --grad-accent: linear-gradient(135deg, #2dd4bf 0%, #38bdf8 100%);
+    
+    /* Textos */
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+    
+    /* Colores de Estado */
+    --user-green: #10b981;
+    --user-amber: #f59e0b;
+    --user-red: #ef4444;
+}
+
+/* Base Global Oscura */
+body {
+    background-color: var(--tech-bg);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ---------- Header / User Chip ---------- */
+.user-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 5px 16px 5px 6px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid var(--tech-border);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-chip:hover {
+    border-color: var(--tech-teal-bright);
+    box-shadow: 0 0 15px rgba(45, 212, 191, 0.25);
+    transform: translateY(-1px);
+}
+
+.user-avatar-mini {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--grad-tech);
+    color: #040d1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 800;
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+}
+
+/* ---------- Encabezado de Perfil (Hero) ---------- */
+.profile-hero {
+    max-width: 1100px;
+    margin: 40px auto 0;
+    padding: 32px;
+    background: var(--tech-surface-card);
+    border: 1px solid var(--tech-border);
+    border-radius: 24px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-hero::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.profile-hero-main {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--grad-tech);
+    color: #040d1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    flex-shrink: 0;
+    box-shadow: 0 0 25px rgba(45, 212, 191, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info h1 {
+    margin: 0 0 4px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+}
+
+.profile-email {
+    margin: 0;
+    color: var(--tech-teal-bright);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+}
+
+.profile-since {
+    margin: 4px 0 0;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+}
+
+.btn-primary-outline {
+    background: transparent;
+    color: var(--tech-teal-bright);
+    border: 1px solid var(--tech-border-glow);
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary-outline:hover {
+    background: rgba(45, 212, 191, 0.12);
+    box-shadow: 0 0 20px rgba(45, 212, 191, 0.3);
+    border-color: var(--tech-teal-bright);
+    transform: translateY(-1px);
+}
+
+.profile-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 24px 0 0;
+}
+
+.stat-box {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 20px 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+    border-color: var(--tech-border-glow);
+    background: rgba(15, 23, 42, 0.85);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.stat-number {
+    display: block;
+    font-size: 1.9rem;
+    font-weight: 800;
+    background: var(--grad-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Fira Code', monospace;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ---------- Banner de Tutorías ---------- */
+.tutoring-suggestion {
+    max-width: 1100px;
+    margin: 32px auto 0;
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(16, 185, 129, 0.06) 100%);
+    border: 1px solid var(--tech-border-glow);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.1);
+    color: var(--text-main) !important;
+}
+
+.tutoring-suggestion-tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--tech-teal-bright) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    background: rgba(45, 212, 191, 0.12);
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(45, 212, 191, 0.3);
+}
+
+.tutoring-suggestion h3 {
+    margin: 0 0 6px;
+    font-size: 1.2rem;
+    color: var(--text-main) !important;
+    font-weight: 600;
+}
+
+.tutoring-suggestion p {
+    margin: 0;
+    color: var(--text-muted) !important;
+    max-width: 52ch;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.tutoring-suggestion .btn-tutoring {
+    white-space: nowrap;
+    background: var(--grad-tech);
+    color: #040d1a !important;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+}
+
+.tutoring-suggestion .btn-tutoring:hover {
+    box-shadow: 0 6px 20px rgba(45, 212, 191, 0.5);
+    transform: translateY(-2px);
+}
+
+/* ---------- Mis Cursos ---------- */
+.my-courses-section,
+.payments-section,
+.study-path-section {
+    max-width: 1100px;
+    margin: 56px auto 0;
+    padding: 0 24px;
+}
+
+.section-header h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.enrolled-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.enrolled-card {
+    border: 1px solid var(--tech-border);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--tech-surface-card);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.enrolled-card:hover {
+    border-color: var(--tech-teal-bright);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.15);
+}
+
+.enrolled-card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.enrolled-card h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+/* Status Pills */
+.status-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+    letter-spacing: 0.03em;
+}
+
+.status-pill.paid {
+    background: rgba(16, 185, 129, 0.15) !important;
+    color: #34d399 !important;
+    border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.status-pill.pending {
+    background: rgba(245, 158, 11, 0.15) !important;
+    color: #fbbf24 !important;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.enrolled-card .btn-continue {
+    margin-top: 8px;
+    text-align: center;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--tech-teal-bright) !important;
+    padding: 11px;
+    border-radius: 12px;
+    font-weight: 600;
+    border: 1px solid var(--tech-border);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.enrolled-card .btn-continue:hover {
+    background: var(--grad-tech);
+    color: #040d1a !important;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.35);
+}
+
+/* ---------- Tabla de Pagos ---------- */
+.payments-table {
+    border: 1px solid var(--tech-border);
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--tech-surface-card);
+    backdrop-filter: blur(12px);
+    margin-top: 20px;
+}
+
+.payment-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    color: var(--text-main);
+    transition: background 0.2s ease;
+}
+
+.payment-row:hover:not(.head) {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.payment-row + .payment-row {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.payment-row.head {
+    background: rgba(15, 23, 42, 0.9);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.payment-course {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.payment-action {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--tech-teal-bright);
+    transition: color 0.2s;
+}
+
+.payment-action:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* ==========================================================
+   NUEVOS COMPONENTES: RUTA DE ESTUDIO Y LMS INTERACTIVO
+   ========================================================== */
+
+/* Cabecera del LMS y Botón de Certificado */
+.study-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.tech-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--tech-teal-bright);
+    background: rgba(45, 212, 191, 0.1);
+    border: 1px solid rgba(45, 212, 191, 0.25);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+}
+
+.btn-certificate {
+    background: var(--grad-tech);
+    color: #040d1a;
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 12px 22px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.35);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-certificate:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 0 28px rgba(45, 212, 191, 0.6);
+}
+
+.btn-certificate:disabled,
+.btn-certificate.disabled {
+    opacity: 0.35;
+    filter: grayscale(1);
+    cursor: not-allowed;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* Layout de la Ruta de Estudio */
+.study-path-layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 0;
+    border: 1px solid var(--tech-border);
+    border-radius: 24px;
+    overflow: hidden;
+    background: #070d14;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    margin-top: 20px;
+}
+
+/* Sidebar Lateral de Módulos */
+.study-sidebar {
+    background: #0b131e;
+    padding: 24px;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.study-progress {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.study-sidebar .progress-text {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.study-sidebar .progress-percentage {
+    color: var(--tech-teal-bright);
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.progress-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--grad-tech);
+    border-radius: 999px;
+    transition: width 0.4s ease;
+    box-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
+}
+
+.progress-subtext {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    font-family: 'Fira Code', monospace;
+}
+
+/* Lista de Módulos / Lecciones */
+.module-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 520px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+/* Scrollbar personalizado */
+.module-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.module-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+}
+
+.module-list .module-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    color: var(--text-muted) !important;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.module-list .module-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: #ffffff !important;
+}
+
+.module-list .module-item.active {
+    background: rgba(6, 182, 212, 0.12) !important;
+    border-color: rgba(6, 182, 212, 0.35) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.module-list .module-index {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: var(--text-muted) !important;
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Fira Code', monospace;
+}
+
+.module-list .module-item.active .module-index {
+    background: var(--grad-tech) !important;
+    color: #040d1a !important;
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
+}
+
+.module-list .module-item.done .module-index {
+    background: var(--user-green) !important;
+    color: #040d1a !important;
+}
+
+/* Área de Contenido Principal y Reproductor */
+.study-content {
+    padding: 28px;
+    background: #070d14;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-height: 480px;
+    background: #000;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--tech-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.video-wrapper iframe,
+.video-wrapper video {
+    width: 100%;
+    height: 420px;
+    border: 0;
+    display: block;
+}
+
+/* Barra de Navegación de Lecciones (Anterior / Check / Siguiente) */
+.lesson-nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 18px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+}
+
+.btn-nav {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    border: 1px solid var(--tech-border);
+    padding: 9px 18px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-nav:hover:not(:disabled) {
+    background: rgba(6, 182, 212, 0.15);
+    border-color: var(--tech-teal-bright);
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.25);
+}
+
+.btn-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    border-color: transparent;
+}
+
+.complete-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    cursor: pointer;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.2s ease;
+}
+
+.complete-check:hover {
+    border-color: var(--tech-teal-bright);
+    color: #ffffff;
+}
+
+.complete-check input[type="checkbox"] {
+    accent-color: var(--tech-cyan);
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+}
+
+/* Sistema de Pestañas de la Lección */
+.module-details-tabs {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 22px;
+}
+
+.tab-headers {
+    display: flex;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+}
+
+.tab-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 8px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.tab-btn.active {
+    color: var(--tech-teal-bright);
+    background: rgba(6, 182, 212, 0.12);
+    border-color: rgba(6, 182, 212, 0.35);
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.15);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.25s ease-in-out;
+}
+
+.tab-content h3 {
+    margin: 0 0 10px;
+    font-size: 1.25rem;
+    color: #ffffff;
+}
+
+.tab-content p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.92rem;
+}
+
+.tab-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 14px !important;
+}
+
+/* Lista de Recursos */
+.resources-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.resources-list li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--tech-teal-bright) !important;
+    font-size: 0.9rem;
+    padding: 12px 16px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.resources-list li a:hover {
+    background: rgba(6, 182, 212, 0.1);
+    border-color: var(--tech-teal-bright);
+    transform: translateX(4px);
+}
+
+/* Bloc de Notas */
+#lesson-notes-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(7, 13, 20, 0.8);
+    border: 1px solid var(--tech-border);
+    border-radius: 12px;
+    padding: 14px;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.9rem;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+#lesson-notes-input:focus {
+    border-color: var(--tech-teal-bright);
+    box-shadow: 0 0 12px rgba(45, 212, 191, 0.2);
+}
+
+.notes-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.notes-status {
+    font-size: 0.8rem;
+    color: var(--tech-teal-bright);
+    font-family: 'Fira Code', monospace;
+}
+
+.btn-save-notes {
+    background: var(--grad-tech);
+    color: #040d1a;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-save-notes:hover {
+    box-shadow: 0 0 15px rgba(45, 212, 191, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Animación de Pestañas */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Sección Comunidad Discord ---------- */
+.discord-section {
+    max-width: 1100px;
+    margin: 56px auto 0;
+    padding: 48px 28px;
+    background: linear-gradient(135deg, rgba(88, 101, 242, 0.15) 0%, rgba(6, 182, 212, 0.1) 100%);
+    border: 1px solid rgba(88, 101, 242, 0.3);
+    border-radius: 24px;
+    color: #fff;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.discord-content {
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+.discord-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #818cf8;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    background: rgba(129, 140, 248, 0.12);
+    padding: 4px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(129, 140, 248, 0.3);
+}
+
+.discord-section h2 {
+    margin: 0 0 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.discord-section p {
+    color: var(--text-muted);
+    margin: 0 0 24px;
+    font-size: 0.95rem;
+}
+
+.btn-discord {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    background: #5865F2;
+    color: #fff;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4);
+}
+
+.btn-discord:hover {
+    background: #4752c4;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(88, 101, 242, 0.6);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+    .profile-hero-main {
+        flex-wrap: wrap;
+    }
+    .profile-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .tutoring-suggestion {
+        flex-direction: column;
+        text-align: center;
+    }
+    .study-header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .study-path-layout {
+        grid-template-columns: 1fr;
+    }
+    .study-sidebar {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .lesson-nav-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .btn-nav {
+        text-align: center;
+    }
+    .payment-row {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 8px;
+    }
+    .payment-row.head {
+        display: none;
+    }
+}
