@@ -74,3 +74,24 @@ function procesarPago(event) {
     localStorage.removeItem('atisj_carrito');
     window.location.href = 'index.html';
 }
+
+async function loginConGoogle() {
+    // Calcula la ruta actual sin importar si estás en localhost o en un subdirectorio de GitHub Pages
+    const currentPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+    const targetUrl = `${window.location.origin}${currentPath}/user.html`;
+
+    const { data, error } = await db.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+            redirectTo: targetUrl
+        }
+    });
+
+    if (error) {
+        console.error("Error al iniciar sesión:", error);
+        alert("No se pudo iniciar sesión con Google: " + error.message);
+    }
+}
+
+// Exponer la función globalmente
+window.loginConGoogle = loginConGoogle;
